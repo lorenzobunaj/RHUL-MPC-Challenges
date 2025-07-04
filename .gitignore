@@ -1,0 +1,36 @@
+# macos
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# system
+.Trashes
+._*
+
+# backup
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# vsc
+.vscode/
+.history/
+
+# npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# others
+*.log
+.env
+.env.*
+.idea/
+*.iml

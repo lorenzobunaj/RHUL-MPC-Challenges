@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  outsourced-computation:
+    build:
+      context: ./challenges/00-introduction/00-outsourced-computation
+    container_name: ctf_outsourced_computation
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5000:5000"
+    read_only: true
