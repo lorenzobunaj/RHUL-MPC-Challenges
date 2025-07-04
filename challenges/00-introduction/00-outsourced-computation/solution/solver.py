@@ -5,15 +5,7 @@ PORT = 5000 # change to the actual port
 
 def main():
     conn = remote(HOST, PORT)
-    line = conn.recvline().strip().decode()
-    print(f"[DEBUG] Received line: {line}")
-
-    try:
-        msg = int(line)
-        print(f"[+] Parsed integer: {msg}")
-    except ValueError:
-        print("[-] Could not convert to int")
-        return
+    msg = int(conn.recvline().strip().decode())
 
     out1 = msg ^ pow(2, 12)
     for _ in range(15):

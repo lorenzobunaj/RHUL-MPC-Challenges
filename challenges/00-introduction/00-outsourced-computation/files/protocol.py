@@ -23,6 +23,7 @@ def protocol(conn):
 def main():
     server = listen(PORT)
     print(f"Server listening on port {PORT}")
+    conn = server
     protocol(server)
 
 if __name__ == "__main__":
