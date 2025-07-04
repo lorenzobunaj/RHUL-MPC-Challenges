@@ -5,7 +5,7 @@ PORT = 5000 # change to the actual port
 
 def main():
     conn = remote(HOST, PORT)
-    msg = int(conn.recvline().strip())
+    msg = int(conn.recvline().decode().strip())
 
     out1 = msg ^ pow(2, 12)
     for _ in range(15):
