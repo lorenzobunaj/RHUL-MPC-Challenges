@@ -1,12 +1,12 @@
 ## Protocol
-1) $P_A$ sends $a, b, c, x, y, z $ to a trusted party $\mathcal{F}$. Where
+1) $P_A$ sends $a, b, c, x, y, z$ to a trusted party $\mathcal{F}$. Where
 
     ```math
-    \begin{cases}
-    ax + by + cz = 325207 \\
-    -ax + by + cz = 145609 \\
-    -2ax - 3by + 2cz = -110749
-    \end{cases}
+        \begin{cases}
+        ax + by + cz = 325207 \\
+        -ax + by + cz = 145609 \\
+        -2ax - 3by + 2cz = -110749
+        \end{cases}
     ```
 
     and $a, b, c \in _R [2^9, 2^{11}]$
@@ -26,11 +26,11 @@ The vulnerability lies in the fact that we know two out of three of $\{x, y, z\}
 From the protocol, we get $a = a_0$ and $y = y_0, z = z_0$, then we can retrieve $b, c, x$ by solving the linear system
 
 ```math
-\begin{cases}
-a_0x + by_0 + cz_0 = 325207 \\
--a_0x + by_0 + cz_0 = 145609 \\
--2a_0x - 3by_0 + 2cz_0 = -110749
-\end{cases}
+    \begin{cases}
+    a_0x + by_0 + cz_0 = 325207 \\
+    -a_0x + by_0 + cz_0 = 145609 \\
+    -2a_0x - 3by_0 + 2cz_0 = -110749
+    \end{cases}
 ```
 
 Clearly, probably $y_0, z_0$ won't be integers, so we need to consider the approximated values of $b, c, x$ for the solution.
