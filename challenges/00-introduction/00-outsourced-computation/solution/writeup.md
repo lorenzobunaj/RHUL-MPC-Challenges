@@ -22,7 +22,7 @@ $$
 I_A^2 = I_B^1 \oplus K
 $$
 
-where $K = 0101...1010$ with $(2 * r + 1)$ bits, and sends it to $P_B$
+where $K = 0101...$ with $r$ bits, and sends it to $P_B$
 
 4) $P_B$ computes
 
@@ -39,7 +39,7 @@ It seems like the protocol is made of many hard computations, which makes hard t
 In reality, if we analyze the function $g$, performed on the inputs by $P_B$, we notice that, if $\text{len}(x) > 1$,
 
 $$
-    g(x) = g(x \gg 1)\;\; \forall t \in \mathbb{N}
+    g(x) = g(x \gg 1) \space \forall t \in \mathbb{N}
 $$
 
 So, calling $g(s_B) = g(s_B \gg 1) = T$, we have
@@ -52,4 +52,4 @@ Then we see the protocol is just local computation by $P_A$.
 
 The goal to get the flag is therefore to invert $P_A$ computation.
 
-We can bruteforce the parameter $r$, since it can just assume integer values from 8 to 15, and calculate $K$ and $f^{-1}_{r_0}(I_A^1)$. We will apply the two inverse operations until the first 4 bytes of the result are "RHUL".
+We can bruteforce the parameter $r$, since it can just assume integer values from 8 to 15, and calculate $K$ and $f^{-1}_{r'}(I_A^1)$. We will apply the two inverse operations until the first 4 bytes of the result are "RHUL".

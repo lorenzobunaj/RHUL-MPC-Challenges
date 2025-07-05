@@ -3,7 +3,7 @@ from utils import pwn_input, pwn_print
 from party1 import Party1
 from party2 import Party2
 
-PORT = 5000
+PORT = 1337
 with open("flag.txt") as f:
     FLAG = int(f.read().strip().encode().hex(), 16)
 

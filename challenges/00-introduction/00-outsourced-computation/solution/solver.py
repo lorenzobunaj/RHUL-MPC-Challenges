@@ -1,7 +1,7 @@
 from pwn import *
 
 HOST = "localhost" # change to the actual host
-PORT = 5000 # change to the actual port
+PORT = 1337 # change to the actual port
 
 def main():
     
@@ -24,7 +24,6 @@ def main():
             flag = "0" + flag
         
         flag = bytes.fromhex(flag)
-        print(flag)
         
         if (flag[:4] == b"RHUL"):
             print(flag)

@@ -1,12 +1,22 @@
 version: '3.8'
 
 services:
-  outsourced-computation:
+  rhul-00-00:
     build:
       context: ./challenges/00-introduction/00-outsourced-computation
-    container_name: ctf_outsourced_computation
+    container_name: rhul_00_00
     restart: unless-stopped
     tty: true
     ports:
-      - "5000:5000"
+      - "1337:1337"
+    read_only: true
+
+  rhul-01-00:
+    build:
+      context: ./challenges/01-defining-mpc/00-semihonest-security
+    container_name: rhul_01_00
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1338:1338"
     read_only: true
