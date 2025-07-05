@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python3 ./files/protocol.py
+python3 ./files/server.py
