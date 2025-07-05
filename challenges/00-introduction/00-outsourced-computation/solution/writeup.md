@@ -1,36 +1,36 @@
 ## Protocol
-- $P_A$ sends
+1) $P_A$ sends
 
-    $$
-    I_A^1 = f_r(\text{flag})
-    $$
+$$
+I_A^1 = f_r(\text{flag})
+$$
 
-    to $P_B$.
-    Where $f_r(x) = 3^r x$, with $r \in_R [8, 9, \dots, 15]$.
+to $P_B$.
+Where $f_r(x) = 3^r x$, with $r \in_R [8, 9, \dots, 15]$.
 
-- $P_B$ computes
+2) $P_B$ computes
 
-    $$
-    I_B^1 = I_A^1 \oplus g(s_B)
-    $$
+$$
+I_B^1 = I_A^1 \oplus g(s_B)
+$$
 
-    where $g(x) = (x = 0 \lor (x \land (x-1) = 0))$ and sends it to $P_A$.
+where $g(x) = (x = 0 \lor (x \land (x-1) = 0))$ and sends it to $P_A$.
 
-- $P_A$ computes
+3) $P_A$ computes
 
-    $$
-    I_A^2 = I_B^1 \oplus K
-    $$
+$$
+I_A^2 = I_B^1 \oplus K
+$$
 
-    where $K = 0101...1010$ with $(2 * r + 1)$ bits, and sends it to $P_B$
+where $K = 0101...1010$ with $(2 * r + 1)$ bits, and sends it to $P_B$
 
-- $P_B$ computes
+4) $P_B$ computes
 
-    $$
-    I_B^2 = I_A^2 \oplus g(s_B \gg 1)
-    $$
+$$
+I_B^2 = I_A^2 \oplus g(s_B \gg 1)
+$$
 
-    and publish it.
+and publish it.
 
 ## Vulnerability
 
