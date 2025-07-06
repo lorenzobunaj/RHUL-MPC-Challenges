@@ -19,7 +19,7 @@
 
 To get the flag, we need to compute $abc$.
 
-The vulnerability lies in the fact that we know two out of three of $\{x, y, z\}$, and the coefficient associated to the remaining unknown. So we can solve the same linear system to get all the coefficients and unknowns.
+The vulnerability lies in the fact that we know two out of three of $\{x, y, z\}$ and the coefficient associated to the remaining unknown. So we can solve the same linear system to get all the coefficients and unknowns.
 
 ### Example
 
@@ -33,6 +33,6 @@ From the protocol, we get $a = a_0$ and $y = y_0, z = z_0$, then we can retrieve
     \end{cases}
 ```
 
-Clearly, probably $y_0, z_0$ won't be integers, so we need to consider the approximated values of $b, c, x$ for the solution.
+Likely $y_0, z_0$ won't be integers, so we need to consider the approximated values of $b, c, x$ to the nearest integer for the solution.
 
 Once we got $b, c$, computing $abc$ is trivial.

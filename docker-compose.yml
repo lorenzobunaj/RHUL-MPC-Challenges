@@ -20,3 +20,13 @@ services:
     ports:
       - "1338:1338"
     read_only: true
+
+  rhul-01-01:
+    build:
+      context: ./challenges/01-defining-mpc/01-malicious-security
+    container_name: rhul_01_01
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1339:1339"
+    read_only: true
