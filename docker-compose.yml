@@ -33,11 +33,21 @@ services:
 
   rhul-01-02:
     build:
-      context: ./challenges/01-defining-mpc/02-ot-functionality
+      context: ./challenges/01-defining-mpc/02-ot
     container_name: rhul_01_02
     restart: unless-stopped
     tty: true
     ports:
       - "1340:1340"
+    read_only: true
+
+  rhul-01-03:
+    build:
+      context: ./challenges/01-defining-mpc/03-zkp
+    container_name: rhul_01_03
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1341:1341"
     read_only: true
 
