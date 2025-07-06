@@ -30,3 +30,14 @@ services:
     ports:
       - "1339:1339"
     read_only: true
+
+  rhul-01-02:
+    build:
+      context: ./challenges/01-defining-mpc/02-ot-functionality
+    container_name: rhul_01_02
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1340:1340"
+    read_only: true
+
