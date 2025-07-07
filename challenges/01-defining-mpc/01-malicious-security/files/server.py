@@ -9,7 +9,7 @@ with open("flag.txt") as f:
     FLAG = f.read().strip().encode()
 
 key = get_random_bytes(16)
-iv = get_random_bytes(16) 
+iv = get_random_bytes(16)
 cipher = AES.new(key, AES.MODE_CBC, iv)
 ct = cipher.encrypt(pad(FLAG, AES.block_size))
 

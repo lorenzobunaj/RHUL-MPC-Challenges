@@ -32,5 +32,6 @@ __pycache__/
 *.log
 .env
 .env.*
+*.venv
 .idea/
 *.iml

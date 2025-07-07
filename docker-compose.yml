@@ -51,3 +51,13 @@ services:
       - "1341:1341"
     read_only: true
 
+  rhul-02-00:
+    build:
+      context: ./challenges/02-foundamentals-mpc-protocols/00-lut
+    container_name: rhul_02_00
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1342:1342"
+    read_only: true
+
