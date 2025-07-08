@@ -63,7 +63,7 @@ services:
 
   rhul-02-01:
     build:
-      context: ./challenges/02-foundamentals-mpc-protocols/01-intro-gc
+      context: ./challenges/02-foundamentals-mpc-protocols/01-single-gate-gc
     container_name: rhul_02_01
     restart: unless-stopped
     tty: true
@@ -71,7 +71,7 @@ services:
 
   rhul-02-02:
     build:
-      context: ./challenges/02-foundamentals-mpc-protocols/02-deep-gc
+      context: ./challenges/02-foundamentals-mpc-protocols/02-full-gc
     container_name: rhul_02_01
     restart: unless-stopped
     tty: true
