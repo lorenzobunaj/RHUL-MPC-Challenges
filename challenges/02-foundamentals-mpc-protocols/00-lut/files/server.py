@@ -22,6 +22,7 @@ def encrypt(pt, key):
     return ct
 
 access = [0 for _ in range(64)]
+
 def decrypt(ct, key, x, y):
     if access[8 * x + y] == 1:
         raise ValueError
