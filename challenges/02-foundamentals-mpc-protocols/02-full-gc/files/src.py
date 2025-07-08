@@ -4,11 +4,10 @@ from Crypto.Util.Padding import pad
 from random import randint
 from utils import xor, H
 
-# with open("flag.txt") as f:
-#     FLAG_CONTENT = f.read().strip()
-
-FLAG_CONTENT = "JN3Uy7ubhJwN48239CN"
+with open("flag.txt") as f:
+    FLAG_CONTENT = f.read().strip()
 FLAG = "RHUL{" + FLAG_CONTENT + "}"
+
 secret = get_random_bytes(16)
 iv = get_random_bytes(16)
 
