@@ -40,10 +40,11 @@ def protocol():
     
     gate = garble_gate(wires[0], wires[1])
 
-    print("wires:\n" + str(wires))
-    print("garbled gate:\n" + str(gate))
-    print(f"iv: {iv.hex()}")
-    print(f"ciphertext: {ct.hex()}")
+    with open("output.txt", "w") as f:
+        f.write("wires:\n" + str(wires) + "\n")
+        f.write("garbled gate:\n" + str(gate) + "\n")
+        f.write(f"iv: {iv.hex()}\n")
+        f.write(f"ciphertext: {ct.hex()}\n")
 
 def main():
     protocol()

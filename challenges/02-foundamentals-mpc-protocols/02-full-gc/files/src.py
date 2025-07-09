@@ -77,10 +77,10 @@ def protocol():
     
     gates = garble_circuit(wires)
 
-    print("wires:\n" + str(wires))
-    print("gates:\n" + str(gates))
-    print(f"iv: {iv.hex()}")
-    print(f"ciphertext: {ct.hex()}")
+    print("wires:\n" + str(wires) + "\n")
+    print("gates:\n" + str(gates) + "\n")
+    print(f"iv: {iv.hex()}\n")
+    print(f"ciphertext: {ct.hex()}\n")
 
 def main():
     protocol()
