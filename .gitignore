@@ -30,8 +30,6 @@ __pycache__/
 
 # others
 *.log
-.env
-.env.*
 *.venv
 .idea/
 *.iml
