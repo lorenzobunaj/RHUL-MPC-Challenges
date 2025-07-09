@@ -8,8 +8,16 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "1337:1337"
+      - "${R00_00_PORT}:${R00_00_CHAL_PORT}"
     read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
 
   rhul-01-00:
     build:
@@ -18,8 +26,16 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "1338:1338"
+      - "${R01_00_PORT}:${R01_00_CHAL_PORT}"
     read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
 
   rhul-01-01:
     build:
@@ -28,8 +44,16 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "1339:1339"
+      - "${R01_01_PORT}:${R01_01_CHAL_PORT}"
     read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
 
   rhul-01-02:
     build:
@@ -38,8 +62,16 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "1340:1340"
+      - "${R01_02_PORT}:${R01_02_CHAL_PORT}"
     read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
 
   rhul-01-03:
     build:
@@ -48,8 +80,16 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "1341:1341"
+      - "${R01_03_PORT}:${R01_03_CHAL_PORT}"
     read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
 
   rhul-02-00:
     build:
@@ -58,5 +98,17 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "1342:1342"
+      - "${R02_00_PORT}:${R02_00_CHAL_PORT}"
     read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

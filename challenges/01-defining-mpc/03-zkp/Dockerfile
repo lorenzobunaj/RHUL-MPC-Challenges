@@ -23,6 +23,11 @@ RUN pip install --no-cache-dir pycryptodome
 # file permissions
 RUN chmod +x run.sh
 
-# EXPOSE 1337
+# non-root user for runtime
+RUN useradd -m ctfuser && chown -R ctfuser /challenge
+USER ctfuser
+
+# health check (requires netcat inside container)
+# HEALTHCHECK CMD nc -z localhost 1337 || exit 1
 
 CMD ["./run.sh"]

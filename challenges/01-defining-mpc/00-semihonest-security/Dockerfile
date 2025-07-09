@@ -18,11 +18,17 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir pwntools
+RUN pip install --no-cache-dir pycryptodome
 RUN pip install --no-cache-dir numpy
 
 # file permissions
 RUN chmod +x run.sh
 
-# EXPOSE 1337
+# non-root user for runtime
+RUN useradd -m ctfuser && chown -R ctfuser /challenge
+USER ctfuser
+
+# health check (requires netcat inside container)
+# HEALTHCHECK CMD nc -z localhost 1337 || exit 1
 
 CMD ["./run.sh"]
