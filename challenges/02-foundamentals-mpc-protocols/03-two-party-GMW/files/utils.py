@@ -16,12 +16,12 @@ def encrypt(pt, key, iv):
 
 def decrypt(ct, key, iv):
     cipher = AES.new(key, AES.MODE_CBC, iv)
-    pt = unpad(cipher.decrypt(pad(ct, AES.block_size)))
+    pt = cipher.decrypt(ct)
 
     return pt
 
 def bitsToBytes(bits):
-    byte_arr = bytearray()
+    byte_arr = []
 
     for i in range(0, len(bits), 8):
         byte = 0
@@ -43,11 +43,7 @@ def xorBytes(a, b):
     return bytes([ai ^ bi for ai, bi in zip(a, b)])
 
 def notBytes(a):
-    bits = bytesToBits(a)
-    for i in range(len(bits)):
-        bits[i] = 1 - bits[i]
-    
-    return bitsToBytes(bits)
+    return bytes([ai ^ 0xff for ai in a])
 
 def andBytes(a, b):
-    return bytes([ai & bi for ai, bi in zip(a, b)])
+    return bitsToBytes([ai & bi for ai, bi in zip(bytesToBits(a), bytesToBits(b))])

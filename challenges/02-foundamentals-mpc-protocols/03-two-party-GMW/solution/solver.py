@@ -1,10 +1,11 @@
 from pwn import *
+from Crypto.Random import get_random_bytes
 
 HOST = "localhost" # change to the actual host
 PORT = 1343 # change to the actual port
 
 def bitsToBytes(bits):
-    byte_arr = bytearray()
+    byte_arr = []
 
     for i in range(0, len(bits), 8):
         byte = 0
@@ -26,30 +27,33 @@ def xorBytes(a, b):
     return bytes([ai ^ bi for ai, bi in zip(a, b)])
 
 def notBytes(a):
-    bits = bytesToBits(a)
-    for i in range(len(bits)):
-        bits[i] = 1 - bits[i]
-    
-    return bitsToBytes(bits)
+    return bytes([ai ^ 0xff for ai in a])
 
 def andBytes(a, b):
-    return bytes([ai & bi for ai, bi in zip(a, b)])
+    return bitsToBytes([ai & bi for ai, bi in zip(bytesToBits(a), bytesToBits(b))])
 
 def xor_gmw(sx, ry):
     return xorBytes(sx, ry)
 
-def not_gmw(ry):
-    return notBytes(ry)
+def not_gmw(s):
+    return notBytes(s)
 
 def and_table(rx, sy):
-    r = bytes([0] * 16)
+    r = get_random_bytes(16)
     table = []
     for i in range(4):
-        sx = bytes([i // 2] * 16)
-        ry = bytes([i % 2] * 16)
+        sx = bitsToBytes([i // 2] * 16 * 8)
+        ry = bitsToBytes([i % 2] * 16 * 8)
         table.append(xorBytes(r, andBytes(xorBytes(rx, sx), xorBytes(sy, ry))).hex())
 
-    return table
+    return table, r
+
+def and_gmw(conn, rx, sy):
+    tab, r = and_table(rx, sy)
+    for tr in tab:
+        conn.sendline(tr.encode())
+
+    return r
 
 def main():
     conn = remote(HOST, PORT)
@@ -61,24 +65,19 @@ def main():
 
     [x1, x2, x3, x4] = [[rx[16*i:16*(i+1)], sy[16*i:16*(i+1)]] for i in range(4)]
     
+    x3[1] = not_gmw(x3[1])
+
     t1 = xor_gmw(x1[0], x1[1])
     t2 = xor_gmw(x2[0], x2[1])
-    t3 = xor_gmw(x3[0], not_gmw(x3[1]))
+    t3 = xor_gmw(x3[0], x3[1])
+    t4 = and_gmw(conn, x4[0], x4[1])
 
-    tab1 = and_table(x4[0], x4[1])
-    for tr in tab1:
-        conn.sendline(tr.encode())
-    t4 = bytes([0] * 16)
+    w1 = and_gmw(conn, t1, t2)
+    w2 = xor_gmw(t3, t4)
+    
+    zx = xor_gmw(w1, w2)
 
-    ssx = xor_gmw(t2, t3)
-    ssx = xor_gmw(ssx, t4)
-
-    tab2 = and_table(ssx, t1)
-    for tr in tab2:
-        conn.sendline(tr.encode())
-    ssx = bytes([0] * 16)
-
-    conn.sendline(ssx.hex().encode())
+    conn.sendline(zx.hex().encode())
     conn.recvuntil(b"secret share")
     conn.recvline()
     flag = bytes.fromhex(conn.recvline().strip().decode())

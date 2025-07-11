@@ -1,7 +1,7 @@
 from pwn import *
 from Crypto.Random import get_random_bytes
 from utils import pwn_input, pwn_print, encrypt, decrypt, xorBytes, notBytes, andBytes, bitsToBytes, bytesToBits
-from gmw_gates import xor_gmw, not_gmw
+from private.gmw_gates import xor_gmw, not_gmw
 
 PORT = 1343
 with open("flag.txt") as f:
@@ -14,14 +14,18 @@ def circuit(x, y):
     x1, x2, x3, x4 = [x[l*i : l*(i+1)] for i in range(4)]
     y1, y2, y3, y4 = [y[l*i : l*(i+1)] for i in range(4)]
 
+    x2 = notBytes(x2)
+    y3 = notBytes(y3)
+
     t1 = xorBytes(x1, y1)
-    t2 = xorBytes(notBytes(x2), y2)
-    t3 = xorBytes(x3, notBytes(y3))
+    t2 = xorBytes(x2, y2)
+    t3 = xorBytes(x3, y3)
     t4 = andBytes(x4, y4)
 
-    z = xorBytes(t2, t3)
-    z = xorBytes(z, t4)
-    z = andBytes(z, t1)
+    w1 = andBytes(t1, t2)
+    w2 = andBytes(t3, t4)
+
+    z = xorBytes(w1, w2)
 
     return z
 
@@ -58,18 +62,22 @@ def challenge(conn):
     # circuit evalutation
     [y1, y2, y3, y4] = [[sx[16*i:16*(i+1)], ry[16*i:16*(i+1)]] for i in range(4)]
 
+    y2[0] = not_gmw(y2[0])
+
     t1 = xor_gmw(y1[0], y1[1])
     t2 = xor_gmw(y2[0], y2[1])
-    t3 = xor_gmw(y3[0], not_gmw(y3[1]))
+    t3 = xor_gmw(y3[0], y3[1])
     t4 = and_gmw(conn, y4[0], y4[1])
-    ssy = xor_gmw(t2, t3)
-    ssy = xor_gmw(ssy, t4)
-    ssy = and_gmw(ssy, t1)
 
-    ssx = bytes.fromhex(pwn_input(conn, "secret share: "))
-    secret_guess = xorBytes(ssx, ssy)
+    w1 = and_gmw(conn, t1, t2)
+    w2 = xor_gmw(t3, t4)
+    
+    zy = xor_gmw(w1, w2)
 
-    pt = decrypt(ct, secret_guess, iv)
+    zx = bytes.fromhex(pwn_input(conn, "secret share: "))
+    secret_guess = xorBytes(zx, zy)
+
+    pt = decrypt(ct, secret_guess, iv).hex()
     pwn_print(conn, pt)
 
     conn.close()
