@@ -1,8 +1,14 @@
+# Garbled Gates
+
+**Challenge name**: Garbled Gates\
+**Category**: Foundamentals MPC Protocols\
+**Author**: Lorenzo Bunaj
+
 ## Challenge
 
 This challenge implements an AND GG (garbled gate), where the secret used to encrypt the flag is encrypted as the label $L_{\text{out}}^1$.
 
-## Vulnerability
+## Solution
 
 The server publishes, together with the needed parameters to decrypt the flag via AES-CBC, the wires
 

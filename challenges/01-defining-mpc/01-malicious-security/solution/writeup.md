@@ -1,3 +1,9 @@
+# Malicious Security
+
+**Challenge name**: Malicious Security\
+**Category**: Defining MPC\
+**Author**: Lorenzo Bunaj
+
 ## Protocol
 You are $P_A$ and have to interact with $P_B$
 
@@ -7,7 +13,7 @@ You are $P_A$ and have to interact with $P_B$
 
 3) $P_A$ can either get $y$ or try to decrypt $\text{ct} = \text{Enc}_x(\text{flag})$ ($P_B$ will do the computation, $P_A$ can only send $x$). He can repeat this interaction once, so he can do both the things.
 
-## Vulnerability
+## Solution
 
 To get the flag, we need to decrypt it using $x$, so, for sure, one of the two interactions will be used for that.
 

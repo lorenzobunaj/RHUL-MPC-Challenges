@@ -1,3 +1,9 @@
+# Lookup Tables
+
+**Challenge name**: Lookup Tables\
+**Category**: Foundamentals MPC Protocols\
+**Author**: Lorenzo Bunaj
+
 ## Challenge
 
 You can interact with a server which encrypts the flag $F$ in the following way:
@@ -13,7 +19,7 @@ The decryption is made server side, by sending $(x_0, y_0, k_{x_0,y_0})$ to decr
 
 There is also a limitation, you cannot try to decrypt the same entry twice.
 
-## Vulnerability
+## Solution
 
 The vulnerabily is that the encryption of the different shares its not independent to the position.
 

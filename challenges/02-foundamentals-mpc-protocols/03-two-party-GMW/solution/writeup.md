@@ -1,3 +1,9 @@
+# Two-Party GMW
+
+**Challenge name**: Two-Party GMW\
+**Category**: Foundamentals MPC Protocols\
+**Author**: Lorenzo Bunaj
+
 ## Challenge
 
 The flag is encrypted using a secret generated as the output of $C : (x, y) \mapsto \text{secret}$, with $x, y \in_R [0, 255]^{16 \cdot 4}$ and secret defined as.
@@ -27,7 +33,7 @@ At the end of the protocol, the server takes the final share from the user and X
 
 If the two shares are correct, the server will output the original flag.
 
-## Vulnerability
+## Solution
 
 The server publishes the input shares $r_x, s_y$, which the user can use to evaluate $C$ via GMW.
 

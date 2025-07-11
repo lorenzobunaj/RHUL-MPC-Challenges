@@ -1,3 +1,9 @@
+# Semi-Honest Security
+
+**Challenge name**: Semi-Honest Security\
+**Category**: Defining MPC\
+**Author**: Lorenzo Bunaj
+
 ## Protocol
 1) $P_A$ sends $a, b, c, x, y, z$ to a trusted party $\mathcal{F}$. Where
 
@@ -15,7 +21,7 @@
 
 3) $\mathcal{F}$ sends the $n$-th value chosen between $\{a, b, c\}, where $n = s_0 + 2s_1$. And \{x, y, z\} except the $n$-th value (the order is based on the position).
 
-## Vulnerability
+## Solution
 
 To get the flag, we need to compute $abc$.
 

@@ -1,3 +1,9 @@
+# OT Functionality
+
+**Challenge name**: OT Functionality\
+**Category**: Defining MPC\
+**Author**: Lorenzo Bunaj
+
 ## Protocol
 You are $P_B$ and have to interact with $P_A$, with the intermediation of a trusted party $\mathcal{F}$.
 
@@ -13,7 +19,7 @@ You are $P_B$ and have to interact with $P_A$, with the intermediation of a trus
 
 3) $\mathcal{F}$ sends $\{m^0_{b_0}, m^1_{b_1}, \dots, m^n_{b_n}\}$ to $P_B$.
 
-## Vulnerability
+## Solution
 
 The vulnerability lies in the fact that we know, for all the pairs $(m_0^k, m_1^k)$, the position of the flag character based on $k$.
 

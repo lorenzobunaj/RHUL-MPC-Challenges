@@ -1,3 +1,9 @@
+# ZKP Functionality
+
+**Challenge name**: ZKP Functionality\
+**Category**: Defining MPC\
+**Author**: Lorenzo Bunaj
+
 ## Protocol
 You are $P_B$ and have to interact with $P_A$, with the intermediation of a trusted party $\mathcal{F}$.
 
@@ -7,7 +13,7 @@ You are $P_B$ and have to interact with $P_A$, with the intermediation of a trus
 
 3) If the number of bits of $s$ is at least 128 and $g^s \equiv y \cdot r \mod p$, $P_A$ will send the flag in plain.
 
-## Vulnerability
+## Solution
 
 This protocol is supposed to be a zero knowledge proof, where $P_B$ knows $x$ and wants to prove it to $P_A$ by computing
 

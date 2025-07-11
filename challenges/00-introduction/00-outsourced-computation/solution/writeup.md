@@ -1,3 +1,9 @@
+# Outsourced Computation
+
+**Challenge name**: Outsourced Computation\
+**Category**: Introduction\
+**Author**: Lorenzo Bunaj
+
 ## Protocol
 1) $P_A$ sends
 
@@ -32,7 +38,7 @@
 
     and publish it.
 
-## Vulnerability
+## Solution
 
 It seems like the protocol is made of many hard computations, which makes hard to retrieve the flag.
 
