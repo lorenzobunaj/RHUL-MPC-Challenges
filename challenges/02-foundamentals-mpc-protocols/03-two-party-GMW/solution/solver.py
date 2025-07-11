@@ -30,7 +30,7 @@ def notBytes(a):
     return bytes([ai ^ 0xff for ai in a])
 
 def andBytes(a, b):
-    return bitsToBytes([ai & bi for ai, bi in zip(bytesToBits(a), bytesToBits(b))])
+    return bytes([ai & bi for ai, bi in zip(a, b)])
 
 def xor_gmw(sx, ry):
     return xorBytes(sx, ry)
@@ -65,6 +65,7 @@ def main():
 
     [x1, x2, x3, x4] = [[rx[16*i:16*(i+1)], sy[16*i:16*(i+1)]] for i in range(4)]
     
+    x2[0] = not_gmw(x2[0])
     x3[1] = not_gmw(x3[1])
 
     t1 = xor_gmw(x1[0], x1[1])

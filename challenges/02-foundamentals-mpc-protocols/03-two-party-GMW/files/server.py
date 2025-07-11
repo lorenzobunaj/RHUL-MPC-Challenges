@@ -1,7 +1,7 @@
 from pwn import *
 from Crypto.Random import get_random_bytes
 from utils import pwn_input, pwn_print, encrypt, decrypt, xorBytes, notBytes, andBytes, bitsToBytes, bytesToBits
-from private.gmw_gates import xor_gmw, not_gmw
+from private.gmw_gates import xor_gmw
 
 PORT = 1343
 with open("flag.txt") as f:
@@ -23,7 +23,7 @@ def circuit(x, y):
     t4 = andBytes(x4, y4)
 
     w1 = andBytes(t1, t2)
-    w2 = andBytes(t3, t4)
+    w2 = xorBytes(t3, t4)
 
     z = xorBytes(w1, w2)
 
@@ -61,8 +61,6 @@ def challenge(conn):
 
     # circuit evalutation
     [y1, y2, y3, y4] = [[sx[16*i:16*(i+1)], ry[16*i:16*(i+1)]] for i in range(4)]
-
-    y2[0] = not_gmw(y2[0])
 
     t1 = xor_gmw(y1[0], y1[1])
     t2 = xor_gmw(y2[0], y2[1])

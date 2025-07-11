@@ -46,4 +46,4 @@ def notBytes(a):
     return bytes([ai ^ 0xff for ai in a])
 
 def andBytes(a, b):
-    return bitsToBytes([ai & bi for ai, bi in zip(bytesToBits(a), bytesToBits(b))])
+    return bytes([ai & bi for ai, bi in zip(a, b)])
