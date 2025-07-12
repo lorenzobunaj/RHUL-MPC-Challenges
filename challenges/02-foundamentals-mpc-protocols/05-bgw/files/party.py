@@ -1,6 +1,6 @@
 from Crypto.Random import get_random_bytes
 from random import randint
-from private.bgw_gates import add_gate, cmul_gate, mul_gate
+from private.lagrange_interpolation import lagrange_interpolation
 
 class Party:
     def __init__(self, p):
@@ -17,6 +17,4 @@ class Party:
         q = s1 * s2
         return self.generate_shares(q, n)
 
-Party.add_gate = add_gate # # execute local computation for BGW add gate
-Party.cmul_gate = cmul_gate # execute local computation for BGW constant multiplication gate
-Party.mul_gate = mul_gate # execute local computation for BGW multiplication gate (using Lagrange Interpolation)
+Party.lagrange_interpolation = lagrange_interpolation

@@ -83,7 +83,9 @@ def main():
     secret = lagrange_interpole(mul2_shares, p) % p
     conn.sendline(str(secret).encode())
 
-    print(conn.recvall())
+    conn.recvline()
+    flag = conn.recvline().strip()
+    print(flag)
     
     conn.close()
 

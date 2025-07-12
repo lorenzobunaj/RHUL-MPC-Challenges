@@ -1,6 +1,6 @@
-# Multy-Party BGW
+# BGW
 
-**Challenge name**: Multy-Party BGW\
+**Challenge name**: BGW\
 **Category**: Foundamentals MPC Protocols\
 **Author**: Lorenzo Bunaj
 
@@ -14,20 +14,20 @@ The flag is encrypted using a secret generated as the output of $F : (x, y, z) \
 
 We can't compute secret directly, since only the value of $z$, but we can participate in a 3-party BGW protocol, where the other two parties $P_1, P_2$ use as inputs respectively $x, y$.
 
-Through the BGW protocol, $F(x, y, z)$ is computed using the standard BGW ADD and MUL gates, whose code is however kept private.
+$F(x, y, z)$ is computed through the BGW protocol, using the standard BGW ADD and MUL gates.
 
 ## Solution
 
 The server publishes the input $z$, which the user can use to participate in the protocol and evaluate $F(x, y, z)$ via BGW.
 
-The user has to implement in their code:
-- ADD gate to execute the sums in local.
-- MUL gate to generate the multiplication shares and send them to the other parties.
-- The Lagrange interpolation to compute the output of the multiplication gates, according to the BGW logic.
+The user has:
+- Compute the shares of the sums in local.
+- Generate the MUL shares and send them to the other parties, according to the BGW logic.
+- Implement a Lagrange Interpolation algorithm to reconstruct the output of the MUL gates from the received MUL shares.
 
 Once the user successfully got the secret, they can send it to the server, which will use it to decrypt the flag. If the secret is wrong, random bytes will be printed.
 
-An example of Python code which implements the BGW gates is:
+An example of Python code which implements the Lagrange Interpolation:
 ```python
 def modinv(a, p):
     return pow(a, -1, p)
@@ -45,13 +45,7 @@ def lagrange_coeffs(x_s, p):
         coeffs.append(lambda_j)
     return coeffs
 
-def add_gate(self, s1, s2):
-    return (s1 + s2) % self.p
-    
-def cmul_gate(self, s1, k):
-    return (s1 * k) % self.p
-
-def mul_gate(self, shares):
+def lagrange_interpolation(self, shares):
     coeffs = lagrange_coeffs([i+1 for i in range(3)], self.p)
     s = 0
     for i in range(3):

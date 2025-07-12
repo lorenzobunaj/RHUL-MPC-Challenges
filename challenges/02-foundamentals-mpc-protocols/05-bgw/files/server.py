@@ -53,8 +53,8 @@ def challenge(conn):
         pwn_print(conn, f"Your share from party {i+1}: {mul1_public_shares[i][2]}")
     
     mul1_shares = [
-        party1.mul_gate([mul1_public_shares[i][0] for i in range(3)]),
-        party2.mul_gate([mul1_public_shares[i][1] for i in range(3)])
+        party1.lagrange_interpolation([mul1_public_shares[i][0] for i in range(3)]),
+        party2.lagrange_interpolation([mul1_public_shares[i][1] for i in range(3)])
     ]
 
     mul2_public_shares = [
@@ -68,8 +68,8 @@ def challenge(conn):
         pwn_print(conn, f"Your share from party {i+1}: {mul2_public_shares[i][2]}")
     
     mul2_shares = [
-        party1.mul_gate([mul2_public_shares[i][0] for i in range(3)]),
-        party2.mul_gate([mul2_public_shares[i][1] for i in range(3)])
+        party1.lagrange_interpolation([mul2_public_shares[i][0] for i in range(3)]),
+        party2.lagrange_interpolation([mul2_public_shares[i][1] for i in range(3)])
     ]
     for i in range(2):
         pwn_print(conn, f"Your share from party {i+1}: {mul2_shares[i]}")

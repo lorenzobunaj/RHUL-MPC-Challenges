@@ -14,13 +14,7 @@ def lagrange_coeffs(x_s, p):
         coeffs.append(lambda_j)
     return coeffs
 
-def add_gate(self, s1, s2):
-    return (s1 + s2) % self.p
-    
-def cmul_gate(self, s1, k):
-    return (s1 * k) % self.p
-
-def mul_gate(self, shares):
+def lagrange_interpolation(self, shares):
     coeffs = lagrange_coeffs([i+1 for i in range(3)], self.p)
     s = 0
     for i in range(3):
