@@ -17,6 +17,6 @@ class Party:
         q = s1 * s2
         return self.generate_shares(q, n)
 
-Party.add_gate = add_gate # # execute local computation for add gate
-Party.cmul_gate = cmul_gate # execute local computation for constant multiplication gate
-Party.mul_gate = mul_gate # execute local computation for multiplication gate
+Party.add_gate = add_gate # # execute local computation for BGW add gate
+Party.cmul_gate = cmul_gate # execute local computation for BGW constant multiplication gate
+Party.mul_gate = mul_gate # execute local computation for BGW multiplication gate (using Lagrange Interpolation)
