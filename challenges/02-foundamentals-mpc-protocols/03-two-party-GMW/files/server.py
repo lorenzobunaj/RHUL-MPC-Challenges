@@ -1,6 +1,6 @@
 from pwn import *
 from Crypto.Random import get_random_bytes
-from utils import pwn_input, pwn_print, encrypt, decrypt, xorBytes, notBytes, andBytes, bitsToBytes, bytesToBits
+from utils import *
 from private.gmw_gates import xor_gmw
 
 PORT = 1343

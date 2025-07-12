@@ -1,5 +1,5 @@
 from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad, unpad
+from Crypto.Util.Padding import pad
 
 def pwn_print(conn, message: str):
     conn.sendline(message.encode())
