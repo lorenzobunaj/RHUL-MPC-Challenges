@@ -199,6 +199,24 @@ services:
     networks:
       - internal
 
+  rhul-02-08:
+    build:
+      context: ./challenges/02-foundamentals-mpc-protocols/08-faulty-ot
+    container_name: rhul_02_08
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R02_08_PORT}:${R02_08_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 networks:
   internal:
     driver: bridge

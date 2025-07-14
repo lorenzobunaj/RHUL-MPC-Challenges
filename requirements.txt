@@ -1,4 +1,4 @@
-simpy
+sympy
 numpy
 pwntools
 pycryptodome
