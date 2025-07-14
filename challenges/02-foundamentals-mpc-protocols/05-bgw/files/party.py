@@ -7,7 +7,7 @@ class Party:
         self.p = p
 
     def generate_shares(self, secret, n):
-        a = randint(1, self.p)
+        a = randint(1, self.p-1)
         shares = []
         for i in range(1, n + 1):
             shares.append((a * i + secret) % self.p)

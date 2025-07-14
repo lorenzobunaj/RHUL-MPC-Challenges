@@ -17,3 +17,10 @@ def decrypt(ct, secret, iv):
     cipher = AES.new(secret, AES.MODE_CBC, iv)
 
     return cipher.decrypt(ct)
+
+def xor(nums):
+    res = 0
+    for n in nums:
+        res ^= n
+
+    return res

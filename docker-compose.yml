@@ -165,7 +165,7 @@ services:
 
   rhul-02-06:
     build:
-      context: ./challenges/02-foundamentals-mpc-protocols/06-beaver
+      context: ./challenges/02-foundamentals-mpc-protocols/06-beaver-triples
     container_name: rhul_02_06
     restart: unless-stopped
     tty: true
