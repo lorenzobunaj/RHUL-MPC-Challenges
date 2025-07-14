@@ -8,6 +8,7 @@ COPY run.sh .
 COPY flag.txt .
 
 # dependencies
+
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
@@ -19,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir pwntools
 RUN pip install --no-cache-dir pycryptodome
-RUN pip install --no-cache sympy
 
 # file permissions
 RUN chmod +x run.sh
@@ -30,5 +30,7 @@ USER ctfuser
 
 # health check (requires netcat inside container)
 # HEALTHCHECK CMD nc -z localhost 1337 || exit 1
+
+EXPOSE 1337
 
 CMD ["./run.sh"]
