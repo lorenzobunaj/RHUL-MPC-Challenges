@@ -1,7 +1,5 @@
 from pwn import *
 from Crypto.Random import get_random_bytes
-from Crypto.PublicKey import RSA
-from sympy import gcd
 from utils import *
 
 PORT = 1348

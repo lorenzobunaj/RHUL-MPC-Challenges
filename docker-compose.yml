@@ -217,6 +217,24 @@ services:
     networks:
       - internal
 
+  rhul-02-09:
+    build:
+      context: ./challenges/02-foundamentals-mpc-protocols/09-optimized-ot
+    container_name: rhul_02_09
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R02_09_PORT}:${R02_09_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 networks:
   internal:
     driver: bridge
