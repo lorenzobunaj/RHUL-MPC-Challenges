@@ -235,6 +235,24 @@ services:
     networks:
       - internal
 
+  rhul-02-10:
+    build:
+      context: ./challenges/02-foundamentals-mpc-protocols/10-encrypted-ot
+    container_name: rhul_02_10
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R02_10_PORT}:${R02_10_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 networks:
   internal:
     driver: bridge
