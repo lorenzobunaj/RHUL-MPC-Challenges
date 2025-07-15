@@ -13,8 +13,8 @@ The server encrypts the flag using the key $\text{secret}$ s.t.
 ```math
 \text{secret}[i] =
 \begin{cases}
-    m_1[i] \space\space \text{if } 2 \mid i\\
-    m_2[i] \space\space \text{otherwise}
+    m_1[i] &\text{if } 2 \mid i\\
+    m_2[i] &\text{otherwise}
 \end{cases}
 ```
 
@@ -31,8 +31,8 @@ To get the $\text{secret}$ to send to the server to decrypt the flag, we can gen
 ```math
 r_i =
 \begin{cases}
-    0 \space\space \text{if } 2 \mid i\\
-    1 \space\space \text{otherwise}
+    0 &\text{if } 2 \mid i\\
+    1 &\text{otherwise}
 \end{cases}
 ```
 
@@ -41,8 +41,8 @@ to correctly participate in the protocol, we also need to initialize $T, U \in \
 ```math
 \bold{t}_j \oplus \bold{u}_j = r_j \cdot \bold{1}^{16} =
 \begin{cases}
-    \bold{1}^{16} \space\space \text{if } r_j = 1\\
-    \bold{0}^{16} \space\space \text{if } r_j = 0
+    \bold{1}^{16} &\text{if } r_j = 1\\
+    \bold{0}^{16} &\text{if } r_j = 0
 \end{cases}
 ```
 
