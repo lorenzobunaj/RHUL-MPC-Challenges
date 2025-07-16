@@ -273,7 +273,7 @@ services:
 
   rhul-02-12:
     build:
-      context: ./challenges/02-foundamentals-mpc-protocols/12-fuzzy-psi
+      context: ./challenges/02-foundamentals-mpc-protocols/12-random-psi
     container_name: rhul_02_12
     restart: unless-stopped
     tty: true

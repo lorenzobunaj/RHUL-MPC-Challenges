@@ -1,7 +1,35 @@
 from pwn import *
+from sympy import gcd
 
 HOST = "localhost" # change to the actual host
-PORT = 1352 # change to the actual port
+PORT = 1353 # change to the actual port
+
+def compute_secret(x):
+    secret = b""
+    t = []
+    s = []
+
+    for i in range(len(x) - 1):
+        t.append(x[i+1] - x[i])
+
+    for i in range(len(x) - 2):
+        s.append(t[i]*t[i-2] - pow(t[i], 2))
+
+    n = s[0]
+    for i in range(len(s)):
+        n = gcd(n, s[i])
+
+    a = ((x[2] - x[1]) * pow(x[1] - x[0], -1, n)) % n
+
+    b = (x[1] - a * x[0]) % n
+
+    x = x[-1]
+    for _ in range(16):
+        x = (a*x + b) % n
+        secret += bytes([x % 256])
+
+    return secret
+
 
 def main():
     conn = remote(HOST, PORT)
@@ -55,7 +83,8 @@ def main():
     public = bytes.fromhex(public.decode())
     x = [public[i] + 256*public[i+1] for i in range(0, 16, 2)]
     
-    print(x)
+    secret = compute_secret(x)
+    
 
     conn.close()
 

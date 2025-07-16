@@ -40,11 +40,11 @@ def challenge(conn):
     oprf_key = get_random_bytes(16)
     oprf = OPRFServer(oprf_key)
     cuckoo_table = CuckooHashTable(40)
-    
-    x = randint(1, pow(2, 20))
-    a = randint(1, pow(2, 20))
-    b = randint(1, pow(2, 20))
+
     n = randint(1, pow(256, 2))
+    x = randint(1, n-1)
+    a = randint(1, n-1)
+    b = randint(1, n-1)
 
     iv = get_random_bytes(16)
     public, secret = generate_secret(x, a, b, n)
