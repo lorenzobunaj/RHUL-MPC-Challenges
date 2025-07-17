@@ -12,14 +12,21 @@ def compute_secret(x):
     for i in range(len(x) - 1):
         t.append(x[i+1] - x[i])
 
-    for i in range(len(x) - 2):
-        s.append(t[i]*t[i-2] - pow(t[i], 2))
+    for i in range(len(t) - 2):
+        s.append(t[i+2]*t[i] - pow(t[i+1], 2))
 
     n = s[0]
     for i in range(len(s)):
         n = gcd(n, s[i])
+    n = int(n)
 
-    a = ((x[2] - x[1]) * pow(x[1] - x[0], -1, n)) % n
+    a = None
+    for i in range(len(x)-2):
+        try:
+            a = (x[i+2] - x[i+1]) * pow(x[i+1] - x[i], -1, n)
+            break
+        except:
+            a = 1
 
     b = (x[1] - a * x[0]) % n
 
@@ -36,7 +43,7 @@ def main():
 
     s1 = []
     conn.recvuntil(b"S1:\n")
-    for _ in range(40):
+    for _ in range(32):
         s1.append(conn.recvline().strip())
 
     stash = []
@@ -84,8 +91,14 @@ def main():
     x = [public[i] + 256*public[i+1] for i in range(0, 16, 2)]
     
     secret = compute_secret(x)
-    
 
+    conn.sendline(b"4")
+    conn.sendline(secret.hex().encode())
+    conn.recvuntil(b"Flag: ")
+
+    flag = bytes.fromhex(conn.recvline().strip().decode())
+    print(flag)
+    
     conn.close()
 
 if __name__ == "__main__":

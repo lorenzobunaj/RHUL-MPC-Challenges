@@ -18,6 +18,7 @@ def generate_secret(x, a, b, n):
         public += bytes([x % 256, x // 256])
 
     for _ in range(16):
+        x = (a*x + b) % n
         secret += bytes([x % 256])
     
     return public, secret
@@ -63,7 +64,7 @@ def challenge(conn):
     shuffle(s1)
     
     pwn_print(conn, "S1:")
-    for i in range(40):
+    for i in range(32):
         cuckoo_table.insert(oprf.evaluate(s0[i]))
         pwn_print(conn, s1[i])
 
