@@ -8,9 +8,9 @@ def solve_lagrange(xs, ys):
     ])
 
     b = Matrix(ys)
-    coeffs = A.inv_mod(257) * b
+    coeffs = A.inv_mod(251) * b
 
-    return tuple(int(c) % 256 for c in coeffs)
+    return tuple(int(c) % 251 for c in coeffs)
 
 def interpolate_poly(points):
     assert len(points) == 3
@@ -36,6 +36,6 @@ def eval_poly(coeffs, x0):
 
     y0 = []
     for byte_index in range(32): 
-        y0.append((c0[byte_index] + c1[byte_index] * x0 + c2[byte_index] * (x0 ** 2)) % 256)
+        y0.append((c0[byte_index] + c1[byte_index] * x0 + c2[byte_index] * (x0 ** 2)) % 251)
 
     return bytes(y0)

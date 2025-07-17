@@ -53,8 +53,10 @@ def protocol():
     iv = get_random_bytes(16)
     ct = encrypt(FLAG.encode(), secret, iv)
 
-    print(f"Wa: {Wa}")
-    print(f"Wb: {Wb}")
+    [(la1, _), (la2, _)] = Wa
+    [(lb1, _), (lb2, _)] = Wb
+    print(f"Wa: {la1}, {la2}")
+    print(f"Wb: {lb1}, {lb2}")
 
     print("Shared points:")
     for _, y in shared_pts:
