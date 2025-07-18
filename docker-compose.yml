@@ -289,6 +289,24 @@ services:
     networks:
       - internal
 
+  rhul-03-02:
+    build:
+      context: ./challenges/03-implementation-techniques/02-free-xor
+    container_name: rhul_03_02
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R03_02_PORT}:${R03_02_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 networks:
   internal:
     driver: bridge
