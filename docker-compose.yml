@@ -307,6 +307,25 @@ services:
     networks:
       - internal
 
+  rhul-03-03:
+    build:
+      context: ./challenges/03-implementation-techniques/03-half-gates
+    container_name: rhul_03_03
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R03_03_PORT}:${R03_03_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
+
 networks:
   internal:
     driver: bridge
