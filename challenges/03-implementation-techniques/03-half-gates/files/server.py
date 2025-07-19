@@ -13,11 +13,12 @@ def generator_gate(conn, a, c, delta, va, r):
     p = bytes([va * r * d for d in delta])
     pwn_print(conn, f"G's output: {xor(H(a[va]), xor(c[0], p)).hex()}")
 
-def evaluator_gate(conn, a, b, c, va, vb):
-    pwn_print(conn, f"b: {b[vb].hex()}")
+def evaluator_gate(conn, a, b, c, va, vb, r):
+    pwn_print(conn, f"a: {a[va].hex()}")
     pwn_print(conn, f"va: {va}")
+    pwn_print(conn, f"b: {b[vb].hex()}")
 
-    pwn_print(conn, f"G's output: {xor(H(a[1]), xor(c[0], b[0])).hex()}")
+    pwn_print(conn, f"G's output: {xor(H(a[1]), xor(c[0], b[r])).hex()}")
 
 def half_gates_protocol(conn, va, vb):
     r = randint(0,1)
@@ -26,13 +27,13 @@ def half_gates_protocol(conn, va, vb):
     a = [get_random_bytes(8)]
     a.append(xor(a[0], delta))
     b = [bitsToBytes([randint(0,1) for _ in range(63)] + [r])]
-    b.append(xor(a[0], delta))
+    b.append(xor(b[0], delta))
     c = [H(a[0])]
     c.append(xor(c[0], delta))
 
     pwn_print(conn, "####################")
     generator_gate(conn, a, c, delta, va, r)
-    evaluator_gate(conn, a, b, c, va, vb)
+    evaluator_gate(conn, a, b, c, va, vb, r)
 
 def challenge(conn):
     va = bytesToBits(get_random_bytes(8))
