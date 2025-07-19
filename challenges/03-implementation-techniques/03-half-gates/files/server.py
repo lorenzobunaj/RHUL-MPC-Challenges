@@ -14,7 +14,6 @@ def generator_gate(conn, a, c, delta, va, r):
     pwn_print(conn, f"G's output: {xor(H(a[va]), xor(c[0], p)).hex()}")
 
 def evaluator_gate(conn, a, b, c, va, vb, r):
-    pwn_print(conn, f"a: {a[va].hex()}")
     pwn_print(conn, f"va: {va}")
     pwn_print(conn, f"b: {b[vb].hex()}")
 

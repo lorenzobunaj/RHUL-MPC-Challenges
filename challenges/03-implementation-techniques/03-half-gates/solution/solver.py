@@ -54,8 +54,6 @@ def main():
         c = xor(H(a), h)
         vc1 = bytesToBits(c)[-1]
 
-        conn.recvuntil(b"a: ")
-        a = bytes.fromhex(conn.recvline().strip().decode())
         conn.recvuntil(b"va: ")
         va = int(conn.recvline().strip().decode())
         conn.recvuntil(b"b: ")
