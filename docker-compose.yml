@@ -325,6 +325,24 @@ services:
     networks:
       - internal
 
+  rhul-03-04:
+    build:
+      context: ./challenges/03-implementation-techniques/04-oblivious-permutation
+    container_name: rhul_03_04
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R03_04_PORT}:${R03_04_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:

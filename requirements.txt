@@ -2,3 +2,4 @@ sympy
 numpy
 pwntools
 pycryptodome
+mersenne-twister-predictor
