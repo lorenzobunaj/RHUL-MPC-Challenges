@@ -18,8 +18,15 @@ def permute(sequence, k):
 
 def challenge(conn):
     stop = 0
-    guess_k = None
+    next_seed_guess = None
     while stop == 0:
+        seed = random.getrandbits(32)
+        bits = list(map(int, bin(seed)[2:].zfill(32)))
+
+        if next_seed_guess is not None:
+            if next_seed_guess == seed:
+                pwn_print(conn, f"Flag: {FLAG}")
+            
         pwn_print(conn, "New sequence: ")
         sequence = []
         for i in range(32):
@@ -28,13 +35,6 @@ def challenge(conn):
             sequence.append(num)
         for _ in range(19):
             sequence.append(None)
-
-        bits = random.getrandbits(32)
-        bits = list(map(int, bin(bits)[2:].zfill(32)))
-
-        if guess_k is not None:
-            if guess_k == k:
-                pwn_print(conn, f"Flag: {FLAG}")
 
         k = 1
         for i in range(16):
@@ -45,7 +45,7 @@ def challenge(conn):
         for _ in range(20):
             tmp_sequence = permute(new_sequence, k)
             for num in tmp_sequence:
-                conn.send(f'{"-" if num is None else num}'.encode())
+                conn.send(f'{"-" if num is None else num} '.encode())
             conn.send(b"\n")
             if None in new_sequence:
                 new_sequence.remove(None)
@@ -59,12 +59,12 @@ def challenge(conn):
         for _ in range(20):
             tmp_sequence = permute(new_sequence, k)
             for num in tmp_sequence:
-                conn.send(f'{"-" if num is None else num}'.encode())
+                conn.send(f'{"-" if num is None else num} '.encode())
             conn.send(b"\n")
             if None in new_sequence:
                 new_sequence.remove(None)
         
-        guess_k = int(pwn_input(conn, "Your seed guess: "))
+        next_seed_guess = int(pwn_input(conn, "Your next seed guess: "))
 
     conn.close()
 
