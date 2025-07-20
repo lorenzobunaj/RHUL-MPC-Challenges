@@ -1,7 +1,6 @@
 from pwn import *
 from sympy import prime, factorint
 from sympy.ntheory.modular import crt
-import random
 from mt19937predictor import MT19937Predictor
 
 N = 624
