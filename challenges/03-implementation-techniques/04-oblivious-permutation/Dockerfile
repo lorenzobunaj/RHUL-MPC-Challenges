@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir pwntools
-RUN pip install --no-cache-dir pycryptodome
+RUN pip install --no-cache-dir sympy
 
 # file permissions
 RUN chmod +x run.sh
