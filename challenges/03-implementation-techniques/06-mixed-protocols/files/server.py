@@ -27,7 +27,7 @@ def valid_key(public_key):
 def gmw_and(conn, a, b):
     table = []
     for _ in range(4):
-        tr = pwn_input(conn, "Table row: ")
+        tr = int(pwn_input(conn, "Table row: "))
         table.append(tr)
 
     return table[2*a + b]
@@ -41,21 +41,20 @@ def gmw_full_adder(conn, a, b, cin):
     return s, cout
 
 def challenge(conn):
-    pk_bytes = bytes.fromhex(pwn_input(conn, "Public key: "))
-    pk = pickle.loads(pk_bytes)
-
-    if not valid_key(pk):
-        return
-    
     secret = get_random_bytes(16)
     iv = get_random_bytes(16)
     ct = encrypt(FLAG.encode(), secret, iv)
-
     pwn_print(conn, f"iv: {iv.hex()}")
     pwn_print(conn, f"ct: {ct.hex()}")
 
     x = int.from_bytes(secret, "big")
     r = int.from_bytes(get_random_bytes(16), "big")
+
+    pk_bytes = bytes.fromhex(pwn_input(conn, "Public key: "))
+    pk = pickle.loads(pk_bytes)
+
+    if not valid_key(pk):
+        return
 
     x_enc = pk.encrypt(x)
     r_enc = pk.encrypt(r)
@@ -70,7 +69,7 @@ def challenge(conn):
     if len(ry) < len(sx):
         ry = ry.rjust(len(sx), b'\x00')
     sy = xor(int.to_bytes(r, len(sx), "big"), ry)
-    
+
     pwn_print(conn, f"Server's share: {sy.hex()}")
 
     sx_bits = bytesToBits(sx)
@@ -78,7 +77,7 @@ def challenge(conn):
 
     res = []
     cin = 0
-    for i in range(16 * 8 - 1, -1, -1):
+    for i in range(len(sx_bits) - 1, -1, -1):
         s, cin = gmw_full_adder(conn, sx_bits[i], ry_bits[i], cin)
         res.insert(0, s)
 
