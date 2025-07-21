@@ -343,6 +343,24 @@ services:
     networks:
       - internal
 
+  rhul-03-06:
+    build:
+      context: ./challenges/03-implementation-techniques/06-mixed-protocols
+    container_name: rhul_03_06
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R03_06_PORT}:${R03_06_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
