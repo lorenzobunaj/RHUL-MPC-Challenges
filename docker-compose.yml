@@ -361,6 +361,24 @@ services:
     networks:
       - internal
 
+  rhul-03-07:
+    build:
+      context: ./challenges/03-implementation-techniques/07-intro-oblivc
+    container_name: rhul_03_07
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R03_07_PORT}:${R03_07_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
