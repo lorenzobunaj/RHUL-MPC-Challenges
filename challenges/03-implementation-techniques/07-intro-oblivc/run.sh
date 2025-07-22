@@ -1,4 +1,3 @@
 #!/bin/bash
-set -e
-echo "[+] Launching server..."
-/challenge/main
+
+socat TCP-LISTEN:1358,reuseaddr,fork EXEC:"./main 1",pty,stderr
