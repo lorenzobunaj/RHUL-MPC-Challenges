@@ -9,46 +9,32 @@ COPY files/ ./files/
 COPY run.sh .
 COPY flag.txt .
 
-# dependencies
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential gcc g++ git wget cmake\
+    build-essential gcc g++ git wget cmake \
     libtool automake bison flex libssl-dev libffi-dev \
-    libgcrypt20-dev pkg-config m4 \
-    curl rsync unzip perl socat netcat \
-    ocaml ocaml-base \
-    ocamlbuild ocaml-findlib libnum-ocaml-dev \
-    && rm -rf /var/lib/apt/lists/*
+    libgcrypt20-dev pkg-config m4 curl rsync unzip perl \
+    socat netcat ocaml ocaml-base ocamlbuild ocaml-findlib \
+    libnum-ocaml-dev gdb && \
+    rm -rf /var/lib/apt/lists/*
 
-# clone and compile oblivc
+# Clone and build Obliv-C
 RUN git clone https://github.com/samee/obliv-c.git /opt/obliv-c && \
     cd /opt/obliv-c && \
+    git reset --hard && git clean -fdx && \
     ./configure && \
     make
 
-# path obliv.h
-RUN sed -i '/typedef oblivBit obliv int;/a void revealOblivInt(int* dest, obliv int* src, int party);' /opt/obliv-c/src/ext/oblivc/obliv.h
-RUN sed -i '/typedef oblivBit obliv int;/a void feedOblivInt(obliv int* dest, int party, int value);' /opt/obliv-c/src/ext/oblivc/obliv.h
+# Compile binaries
+RUN /opt/obliv-c/bin/oblivcc -g ./files/party1.c ./files/common.c -o party1 && \
+    /opt/obliv-c/bin/oblivcc -g ./files/party2.c ./files/common.c -o party2
 
-# patch obliv.c
-RUN echo 'void revealOblivInt(int* dest, obliv int* src, int party) { __obliv_c__reveal_bits(dest, src, 1, party); }' >> /opt/obliv-c/src/ext/oblivc/obliv.c
-RUN echo 'void feedOblivInt(obliv int* dest, int party, int value) { __obliv_c__feedOblivInputs(dest, &value, 1, party); }' >> /opt/obliv-c/src/ext/oblivc/obliv.c
-
-# rebuild oblivc
-RUN cd /opt/obliv-c && make clean && make
-
-# compile the program using patched oblivcc
-RUN /opt/obliv-c/bin/oblivcc -O2 ./files/main.c -o main
-
-# file permissions
+# Make entrypoint executable
 RUN chmod +x run.sh
 
-# non-root user for runtime
+# Create user
 RUN useradd -m ctfuser && chown -R ctfuser /challenge
 USER ctfuser
 
-# health check (requires netcat inside container)
-# HEALTHCHECK CMD nc -z localhost 1337 || exit 1
-
-EXPOSE 1337
-
+EXPOSE 1358
 CMD ["./run.sh"]

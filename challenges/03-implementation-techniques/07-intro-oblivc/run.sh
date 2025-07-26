@@ -1,3 +1,6 @@
 #!/bin/bash
 
-socat TCP-LISTEN:1358,reuseaddr,fork EXEC:"./main 1",pty,stderr
+./party2 &
+sleep 1
+
+socat TCP-LISTEN:1358,reuseaddr,fork EXEC:"./party1",pty,stderr

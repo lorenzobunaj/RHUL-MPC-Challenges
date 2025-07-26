@@ -362,6 +362,7 @@ services:
       - internal
 
   rhul-03-07:
+    platform: linux/amd64
     build:
       context: ./challenges/03-implementation-techniques/07-intro-oblivc
     container_name: rhul_03_07
@@ -369,6 +370,24 @@ services:
     tty: true
     ports:
       - "${R03_07_PORT}:${R03_07_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
+  rhul-04-00:
+    build:
+      context: ./challenges/04-oblivious-data-structures/00-oblivious-stack
+    container_name: rhul_04_00
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R04_00_PORT}:${R04_00_CHAL_PORT}"
     read_only: true
     cap_drop:
       - ALL
