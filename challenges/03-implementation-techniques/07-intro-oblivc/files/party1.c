@@ -12,7 +12,6 @@ extern void revealOblivInt(int *dest, obliv int *src, int party);
 
 int main()
 {
-    fprintf(stderr, "[P1] TCP server set up on port %d\n", PORT);
     printf("Guess the number: ");
     fflush(stdout);
 
@@ -23,18 +22,14 @@ int main()
         return 1;
     }
 
-    fprintf(stderr, "[P1] User guessed: %d\n", input);
-
     ProtocolDesc pd;
     int retry = 5;
     while (protocolAcceptTcp2P(&pd, "localhost") != 0 && retry-- > 0)
     {
-        fprintf(stderr, "[P1] Waiting for Party 2 to connect... retries left: %d\n", retry);
         sleep(1);
     }
     if (retry < 0)
     {
-        fprintf(stderr, "[P1] Failed to accept Party 2\n");
         return 1;
     }
 

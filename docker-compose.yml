@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  flag-server:
+    build:
+      context: ./flag-server
+    container_name: flag_server
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./challenges:/challenges:ro
+    networks:
+      - internal
+
   rhul-00-01:
     build:
       context: ./challenges/00-introduction/01-outsourced-computation
