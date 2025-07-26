@@ -1,0 +1,13 @@
+{
+    "challengeName": "ZKP Functionality",
+    "flag": "RHUL{4lw4ys_r3ly_0n_c0mm177m3nt_28Ge2}",
+    "description": "You are taking part in a protocol where one player tries to prove they know something, without actually revealing it. Everything follows a clear structure, and if your message checks out, the server gives you what you want.\n\nBut not everything in this setup is as solid as it seems. There is a small gap in the design, just enough to let a clever player fake their way through.\n\nWill you be able to spot it?\n\nConnect to the server: **nc 188.166.153.223 1341**",
+    "categories": [
+        "Defining MPC"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

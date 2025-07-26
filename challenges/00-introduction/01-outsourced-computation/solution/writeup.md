@@ -4,7 +4,9 @@
 **Category**: Introduction\
 **Author**: Lorenzo Bunaj
 
-## Protocol
+## Challenge
+
+The challenge implements the following protocol and share the final output with the user:
 1) $P_A$ sends
 
     ```math
@@ -54,8 +56,8 @@ So, calling $g(s_B) = g(s_B \gg 1) = T$, we have
     I_B^2 = I_A^2 \oplus T = I_A^1 \oplus T \oplus K \oplus T = I_A^1 \oplus K
 ```
 
-Then we see the protocol is just local computation by $P_A$.
+So the protocol is made of just local computation by $P_A$.
 
-The goal to get the flag is therefore to invert $P_A$ computation.
+To get the flag is therefore sufficient to invert $P_A$'s computation.
 
-We can bruteforce the parameter $r$, since it can just assume integer values from 8 to 15, and calculate $K$ and $f^{-1}_{r'}(I_A^1)$. We will apply the two inverse operations until the first 4 bytes of the result are "RHUL".
+We can bruteforce the parameter $r$, since it can just assume integer values from 8 to 15, and calculate $K$ and $f^{-1}_{r'}(I_A^1)$. We will apply the two inverse operations until the first four bytes of the obtained result are "RHUL".

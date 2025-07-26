@@ -1,0 +1,13 @@
+{
+    "challengeName": "Outsourced Computation",
+    "flag": "RHUL{N0t_4lw4ys_1t5_M9C_0fU82hU}",
+    "description": "Two parties designed a custom protocol they believed would keep the flag hidden through a series of complex-looking computations. But as always, appearances can be deceiving.\n\nSomething about the logic doesn’t quite add up, maybe you can spot the weakness and recover the original message.\n\nConnect to the server:\n**nc 188.166.153.223 1337**",
+    "categories": [
+        "Introduction"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

@@ -4,7 +4,9 @@
 **Category**: Defining MPC\
 **Author**: Lorenzo Bunaj
 
-## Protocol
+## Challenge
+
+The challenge implements the following protocol and shares $P_B$'s view to the user (the server acts as the trusted party, which facilitates the computation):
 1) $P_A$ sends $a, b, c, x, y, z$ to a trusted party $\mathcal{F}$. Where
 
     ```math
@@ -41,4 +43,4 @@ From the protocol, we get $a = a_0$ and $y = y_0, z = z_0$, then we can retrieve
 
 Likely $y_0, z_0$ won't be integers, so we need to consider the approximated values of $b, c, x$ to the nearest integer for the solution.
 
-Once we got $b, c$, computing $abc$ is trivial.
+Once we got $b, c$, computing $abc$ and sending it to the server is trivial.

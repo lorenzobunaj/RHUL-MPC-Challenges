@@ -1,0 +1,13 @@
+{
+    "challengeName": "Malicious Security",
+    "flag": "RHUL{40nt_trU5t_4ny0ne_4g4in_94EN73}",
+    "description": "You’re given a choice, inspect a computed value or try to decrypt a message. You can do both, but only once.\n\nThe catch? What you really need is hidden behind a problem that’s usually hard to solve... unless you play smart from the start. Sometimes, breaking a protocol is just a matter of picking the right number.\n\nConnect to the server: **nc 188.166.153.223 1339**",
+    "categories": [
+        "Defining MPC"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

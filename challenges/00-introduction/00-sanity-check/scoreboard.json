@@ -1,0 +1,10 @@
+{
+    "challengeName": "Sanity Check",
+    "flag": "RHUL{4_l1ttle_g1ft_70_s7ar7_7b7E}",
+    "description": "Your first challenge is a simple sanity check. Here, you’ll take two numbers, XOR them together, and convert the result into a 16-bytes string. Finally, use the string as the key to decrypt the ciphertext using AES-CBC.\n\n**number 1**:\n241071672149888037090003186649130959846\n**number 2**:\n159571893722068447393132122175583556290\n**ciphertext**:\n192042843926546230112908289220163197634119709579615920553968754640341950251279129627\n**iv**:\n1850292832899728713418628139173",
+    "categories": [
+        "Introduction"
+    ],
+    "challengeType": "static",
+    "value": 50
+}

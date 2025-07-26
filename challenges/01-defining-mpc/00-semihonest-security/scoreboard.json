@@ -1,0 +1,13 @@
+{
+    "challengeName": "Semi-Honest Security",
+    "flag": "RHUL{40nt_trU5t_4ny0ne_84Wm274}",
+    "description": "In this protocol, two parties rely on a trusted functionality to exchange values derived from a system of equations. The idea is to keep certain components hidden while still enabling controlled information flow between the participants.\n\nBut as always, hiding isn’t the same as securing.\n\nCan you take what’s revealed, do some algebra, and recover what was meant to be secret?\n\nConnect to the server:\n**nc 188.166.153.223 1338**",
+    "categories": [
+        "Defining MPC"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

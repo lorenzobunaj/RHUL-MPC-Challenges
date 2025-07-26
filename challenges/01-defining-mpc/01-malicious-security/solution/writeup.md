@@ -4,14 +4,16 @@
 **Category**: Defining MPC\
 **Author**: Lorenzo Bunaj
 
-## Protocol
-You are $P_A$ and have to interact with $P_B$
+## Challenge
+The challenge implements the following protocol, where the user acts as $P_A$:
 
-1) $P_A$ sends $p$ to $P_B$.
+1) $P_A$ sends $p$, with bit-length greater than 256, to the server.
 
-2) $P_B$ computes $y = 2^x \mod p$, for some random 16-bytes $x$.
+2) The server computes $y = 2^x \mod p$, for some random 16-bytes $x$.
 
-3) $P_A$ can either get $y$ or try to decrypt $\text{ct} = \text{Enc}_x(\text{flag})$ ($P_B$ will do the computation, $P_A$ can only send $x$). He can repeat this interaction once, so he can do both the things.
+3) $P_A$ can either get $y$ or try to decrypt $\text{ct} = \text{Enc}_x(\text{flag})$. He can repeat this interaction once, so he can do both the things.
+
+The encryption functions is based on AES-CBC and the iv and the ciphertext are kept by the server. The only thing the user can send is his guess for the secret key.
 
 ## Solution
 

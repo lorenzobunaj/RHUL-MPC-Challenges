@@ -1,0 +1,13 @@
+{
+    "challengeName": "OT Functionality",
+    "flag": "RHUL{kn0wiN9_7h3_p4tt3erN_15_3n0ugh}",
+    "description": "You're joining as one of the players in a simple interactive protocol. Messages are exchanged, choices are made, and something interesting comes out of it.\n\nThe setup works as intended... mostly. Your goal? Use what’s available to recover something that was meant to stay hidden.\n\nConnect to the server: **nc 188.166.153.223 1340**",
+    "categories": [
+        "Defining MPC"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

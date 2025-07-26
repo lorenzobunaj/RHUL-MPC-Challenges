@@ -4,8 +4,9 @@
 **Category**: Defining MPC\
 **Author**: Lorenzo Bunaj
 
-## Protocol
-You are $P_B$ and have to interact with $P_A$, with the intermediation of a trusted party $\mathcal{F}$.
+## Challenge
+
+You are $P_B$ and have to interact with $P_A$, with the intermediation of a trusted party $\mathcal{F}$ (the server).
 
 1) $P_A$ sends $y, g, p$ s.t. $y = g^x \mod p$ to $P_B$
 
