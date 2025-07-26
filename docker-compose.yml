@@ -410,6 +410,24 @@ services:
     networks:
       - internal
 
+  rhul-04-01:
+    build:
+      context: ./challenges/04-oblivious-data-structures/01-okvs
+    container_name: rhul_04_01
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R04_01_PORT}:${R04_01_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
