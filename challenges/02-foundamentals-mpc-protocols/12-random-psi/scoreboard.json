@@ -1,0 +1,13 @@
+{
+    "challengeName": "Random PSI",
+    "flag": "RHUL{ps1_bu7_w1th_4_bi7_0f_r4nd0mn355_9nUns}",
+    "description": "A hidden secret scattered across values, and your goal is to recover it. But this time, the structure has shifted. The pieces aren’t just placed for you to find; they follow a hidden pattern, carefully generated to mask their origins.\n\nYour task is to uncover the logic behind the randomness. What seems unpredictable at first glance actually follows a rule.\n\nConnect to the server: **nc 188.166.153.223 1353**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

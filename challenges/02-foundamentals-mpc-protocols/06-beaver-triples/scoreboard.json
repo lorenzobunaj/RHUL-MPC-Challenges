@@ -1,0 +1,13 @@
+{
+    "challengeName": "Beaver Triples",
+    "flag": "RHUL{sh4res_4re_s4f3_4s_l0ng_4s_yu0_c4n_d1st1ngu15h_7h3m}",
+    "description": "You are one of the parties in a secure multiplication protocol, where the pieces are split, shared, and masked behind random values. The computation follows the Beaver protocol, with hidden correlations and carefully structured randomness.\n\nThe process unfolds in rounds, with shuffled hints and limited chances. It’s a matter of precision, timing, and a bit of luck.\n\nConnect to the server: **nc 188.166.153.223 1346**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

@@ -1,0 +1,13 @@
+{
+    "challengeName": "Encrypted OT",
+    "flag": "RHUL{w34k_k3ys_w3ak_pr0t0col_4iu9NN}",
+    "description": "The structure may feel familiar, but something subtle has changed. A layer of encryption now wraps around part of the process, introducing an extra twist. What you send is no longer processed as-is, it's transformed, tested, and treated differently depending on hidden conditions.\n\nLook closely, and you might find that the added layer isn’t a barrier, it’s an opportunity.\n\nConnect to the server: **nc 188.166.153.223 1350**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

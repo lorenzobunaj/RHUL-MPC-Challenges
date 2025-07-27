@@ -13,8 +13,8 @@ def index():
     return '''
     Flag Server is running.
 
-    Submit your flag using:
-    curl -X POST -d "challenge=XX-YY&flag=RHUL{your_flag}" http://localhost:5000/submit --output solution.zip
+    If you got the flag, download the solver and the writeup using:
+    curl -X POST -d "challenge=XX-YY&flag=RHUL{your_flag}" http:///188.166.153.223:5000/submit --output solution.zip
 '''
 
 @app.route('/submit', methods=['POST'])

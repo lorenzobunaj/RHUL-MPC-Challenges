@@ -1,6 +1,6 @@
-# PSI
+# PSI Protocol
 
-**Challenge name**: PSI\
+**Challenge name**: PSI Protocol\
 **Category**: Foundamentals MPC Protocols\
 **Author**: Lorenzo Bunaj
 

@@ -1,0 +1,13 @@
+{
+    "challengeName": "Two-Party GMW",
+    "flag": "RHUL{4lw4y5_k33p_y0ur_g4t3s_s4f3_8H7un}",
+    "description": "You're entering a secure computation protocol where two parties work together to compute a function without revealing their inputs. The values are split into secret shares and gates are evaluated step by step.\n\nThe structure is clear, but the logic requires coordination. Some gates can be handled on your own, others need some... communication.\n\nConnect to the server: **nc 188.166.153.223 1343**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

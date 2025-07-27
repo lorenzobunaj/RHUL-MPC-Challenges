@@ -1,6 +1,6 @@
-# Intro to OT
+# OT Protocol
 
-**Challenge name**: Intro to OT\
+**Challenge name**: OT Protocol\
 **Category**: Foundamentals MPC Protocols\
 **Author**: Lorenzo Bunaj
 

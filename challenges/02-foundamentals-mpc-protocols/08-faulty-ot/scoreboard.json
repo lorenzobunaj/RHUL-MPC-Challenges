@@ -1,0 +1,13 @@
+{
+    "challengeName": "Faulty OT",
+    "flag": "RHUL{4lw4ys_ch00s3_c4r3fully_yu0r_1npu7s_8sn8N}",
+    "description": "At first glance, things look familiar: you make a request, get a response, and try to extract a hidden message. But something in the setup isn’t quite right.\n\nWith careful planning and the right perspective, what was supposed to stay out of reach might just fall into place.\n\nConnect to the server: **nc 188.166.153.223 1348**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

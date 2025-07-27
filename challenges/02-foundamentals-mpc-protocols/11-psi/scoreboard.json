@@ -1,0 +1,13 @@
+{
+    "challengeName": "PSI Protocol",
+    "flag": "RHUL{w3_l0v3_cuck00_h4sh1ng_s0_muCh_8nyby}",
+    "description": "You are working with two sets that have something in common, but most of their contents are hidden behind structured layers. With the right tools, and enough access, you might be able to learn more than you’re supposed to.\n\nThe pieces can be pulled together to unlock what’s been protected. Just make sure you get it right, you only have one shot.\n\nConnect to the server: **nc 188.166.153.223 1352**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

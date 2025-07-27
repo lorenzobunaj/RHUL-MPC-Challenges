@@ -1,0 +1,13 @@
+{
+    "challengeName": "BGW Protocol",
+    "flag": "RHUL{n3v3r_und3r3s5tim473_5h4m1r_3nUbn}",
+    "description": "You’re stepping into a multi-party computation where three participants each hold a piece of the puzzle. Together, they evaluate a shared function over a prime field to reveal a secret that unlocks the flag. You only know part of the input, but that’s enough to play your role in the protocol.\n\nThe computation follows strict rules, but if you manage your shares correctly and handle the math with care, you can reconstruct the final result. Communication, coordination, and some smart interpolation are all it takes to bring the secret into view.\n\nConnect to the server: **nc 188.166.153.223 1345**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

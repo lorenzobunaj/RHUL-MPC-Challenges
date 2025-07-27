@@ -1,0 +1,13 @@
+{
+    "challengeName": "Faulty GMW",
+    "flag": "RHUL{7ru57_n0_pr0t0col_8H7un}",
+    "description": "You’ve been invited to take part in a secure two-party computation, where values are masked, gates are applied, and the final result holds the key to a hidden flag. Everything seems to follow the usual protocol, with shares exchanged and logic gates evaluated one by one.\n\nBut not everything is wired correctly. To succeed, you’ll need to spot the mismatch and carefully adapt your part of the computation.\n\nConnect to the server: **nc 188.166.153.223 1344**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

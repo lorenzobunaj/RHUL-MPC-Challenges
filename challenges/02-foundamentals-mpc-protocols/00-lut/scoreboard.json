@@ -1,0 +1,13 @@
+{
+    "challengeName": "Lookup Tables",
+    "flag": "RHUL{f0ll0w_th3_Kn1gh7_70ur_t0_w1n_3n47}",
+    "description": "You find yourself in a system that splits secrets across a digital board. Each square holds a locked piece of something bigger, protected with its own key. You can reach into the grid, one square at a time, and request what's inside, but there's no going back.\n\nThe rules seem solid, the process clean. If you navigate carefully, you might just gather enough to see the full picture. The pieces are there. You just need to collect them.\n\nConnect to the server: **nc 188.166.153.223 1342**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

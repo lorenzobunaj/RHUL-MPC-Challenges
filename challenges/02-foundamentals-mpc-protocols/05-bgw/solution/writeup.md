@@ -1,6 +1,6 @@
-# BGW
+# BGW Protocol
 
-**Challenge name**: BGW\
+**Challenge name**: BGW Protocol\
 **Category**: Foundamentals MPC Protocols\
 **Author**: Lorenzo Bunaj
 

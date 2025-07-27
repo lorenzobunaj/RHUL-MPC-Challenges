@@ -1,0 +1,13 @@
+{
+    "challengeName": "Garbled Gates",
+    "flag": "RHUL{jn7UBYvt5vbhjkoi9NY}",
+    "description": "You’re stepping into a protocol where logic is hidden beneath layers of encrypted labels. The gates are wired and, somewhere inside, the output holds a secret not meant to be seen. All you need is the right combination to bring it into the open.\n\nThe structure looks solid, but not everything is fully concealed. Connect the wires and see what lies behind the gate.",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

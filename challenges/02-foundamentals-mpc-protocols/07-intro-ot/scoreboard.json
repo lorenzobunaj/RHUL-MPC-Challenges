@@ -1,0 +1,13 @@
+{
+    "challengeName": "OT Protocol",
+    "flag": "RHUL{1mpl3m3n7_y0ur_d3cryp710n_4nd_w1n_i3nu4g}",
+    "description": "You’re joining a system where only part of the information is meant to reach you. The setup is careful, with limits in place to protect what isn’t chosen, or at least that’s the idea. Your role is simple: make a request, receive a response, and see what you can uncover.\n\nWith the right inputs, one path leads exactly where you need it to go.\n\nConnect to the server: **nc 188.166.153.223 1347**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

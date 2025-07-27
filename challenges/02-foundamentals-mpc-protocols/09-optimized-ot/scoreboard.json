@@ -1,0 +1,13 @@
+{
+    "challengeName": "Optimized OT",
+    "flag": "RHUL{K0l3sn1k0v_4nd_Kum4r3s4n_p0w3r_8nTb2}",
+    "description": "This time, the protocol is bigger, faster, and more structured. Messages are exchanged in bulk, with patterns hidden inside a grid of values. Everything is aligned to follow a strict logic, but the design still leaves room to maneuver.\n\nYou know what to aim for, and if your choices match the structure just right, the pieces will start to fall into place. With careful preparation and the right input, what was locked behind layers of computation becomes clear.\n\nConnect to the server: **nc 188.166.153.223 1349**",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

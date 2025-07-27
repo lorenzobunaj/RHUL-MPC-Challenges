@@ -1,0 +1,13 @@
+{
+    "challengeName": "Garbled Circuits",
+    "flag": "RHUL{JN3Uy7ubhJwN48239CN}",
+    "description": "You’re handed the blueprint of a circuit where logic is disguised and data flows through encrypted gates. Each part of the secret has been split across the grid, carefully tucked into output labels. The layout looks complex at first, but patterns start to emerge.\n\nThe operations repeat, the structure loops, and with just a single known piece, the rest begins to fall into place. Follow the logic, trace the gates, and uncover what was meant to be hidden.",
+    "categories": [
+        "Foundamentals MPC Protocols"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}
