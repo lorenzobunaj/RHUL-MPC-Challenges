@@ -1,7 +1,7 @@
-# Intro to Obliv-C
+# Oblivious Stack
 
 **Challenge name**: Oblivious Stack\
-**Category**: Oblivious Stack\
+**Category**: Oblivious Data Structures\
 **Author**: Lorenzo Bunaj
 
 ## Challenge
