@@ -303,7 +303,25 @@ services:
 
   rhul-03-02:
     build:
-      context: ./challenges/03-implementation-techniques/02-free-xor
+      context: ./challenges/03-implementation-techniques/01-free-xor
+    container_name: rhul_03_01
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R03_01_PORT}:${R03_01_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
+  rhul-03-03:
+    build:
+      context: ./challenges/03-implementation-techniques/02-half-gates
     container_name: rhul_03_02
     restart: unless-stopped
     tty: true
@@ -319,9 +337,9 @@ services:
     networks:
       - internal
 
-  rhul-03-03:
+  rhul-03-04:
     build:
-      context: ./challenges/03-implementation-techniques/03-half-gates
+      context: ./challenges/03-implementation-techniques/03-oblivious-permutation
     container_name: rhul_03_03
     restart: unless-stopped
     tty: true
@@ -337,32 +355,14 @@ services:
     networks:
       - internal
 
-  rhul-03-04:
-    build:
-      context: ./challenges/03-implementation-techniques/04-oblivious-permutation
-    container_name: rhul_03_04
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "${R03_04_PORT}:${R03_04_CHAL_PORT}"
-    read_only: true
-    cap_drop:
-      - ALL
-    security_opt:
-      - no-new-privileges:true
-    tmpfs:
-      - /tmp
-    networks:
-      - internal
-
   rhul-03-06:
     build:
-      context: ./challenges/03-implementation-techniques/06-mixed-protocols
-    container_name: rhul_03_06
+      context: ./challenges/03-implementation-techniques/05-mixed-protocols
+    container_name: rhul_03_05
     restart: unless-stopped
     tty: true
     ports:
-      - "${R03_06_PORT}:${R03_06_CHAL_PORT}"
+      - "${R03_05_PORT}:${R03_05_CHAL_PORT}"
     read_only: true
     cap_drop:
       - ALL
@@ -376,12 +376,12 @@ services:
   rhul-03-07:
     platform: linux/amd64
     build:
-      context: ./challenges/03-implementation-techniques/07-intro-oblivc
-    container_name: rhul_03_07
+      context: ./challenges/03-implementation-techniques/06-intro-oblivc
+    container_name: rhul_03_06
     restart: unless-stopped
     tty: true
     ports:
-      - "${R03_07_PORT}:${R03_07_CHAL_PORT}"
+      - "${R03_06_PORT}:${R03_06_CHAL_PORT}"
     read_only: true
     cap_drop:
       - ALL
