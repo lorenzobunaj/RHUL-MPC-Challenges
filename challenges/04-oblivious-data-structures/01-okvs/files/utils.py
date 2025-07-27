@@ -20,18 +20,14 @@ def random_oracle(val, l):
     return tuple(indices)
 
 def H(val : bytes):
-    k1 = [v for v in val[:4]]
-    random.shuffle(k1)
-    k1 = bytes(k1)
+    k1 = val[:4]
+    k2 = val[4:8]
+    k3 = val[8:12]
+    k4 = val[12:16]
 
-    k2 = [v for v in val[4:8]]
+    k1 = xor(k4, k1)
     k2 = xor(k1, k2)
-
-    k3 = [v for v in val[8:12]]
-    random.shuffle(k3)
-    k3 = bytes(k3)
-
-    k4 = [v for v in val[12:16]]
+    k3 = xor(k2, k3)
     k4 = xor(k3, k4)
 
     return k1 + k2 + k3 + k4
