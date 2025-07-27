@@ -123,7 +123,7 @@ services:
 
   rhul-02-03:
     build:
-      context: ./challenges/02-foundamentals-mpc-protocols/03-two-party-gmw
+      context: ./challenges/02-foundamentals-mpc-protocols/03-two-party-GMW
     container_name: rhul_02_03
     restart: unless-stopped
     tty: true
