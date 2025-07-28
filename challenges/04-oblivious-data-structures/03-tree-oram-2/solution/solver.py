@@ -2,10 +2,9 @@ from pwn import *
 from Crypto.Util.Padding import pad
 from Crypto.Cipher import AES
 import re
-import ast
 
 HOST = "localhost" # change to the actual host
-PORT = 1361 # change to the actual port
+PORT = 1362 # change to the actual port
 
 def read_position_map(conn):
     conn.recvuntil(b"Position map:\n")

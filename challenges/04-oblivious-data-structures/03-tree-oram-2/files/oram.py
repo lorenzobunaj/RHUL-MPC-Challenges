@@ -59,6 +59,5 @@ class TreeORAM:
 
     def dump(self):
         return {
-            'position_map': self.position_map,
-            'tree': [[(bid, val) for (bid, val) in node] for node in self.tree]
+            'position_map': self.position_map
         }

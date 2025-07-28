@@ -1,4 +1,5 @@
-from pwn import *
+import socket
+import threading
 from Crypto.Random import get_random_bytes
 from utils import *
 from oram import TreeORAM
@@ -7,8 +8,8 @@ PORT = 1361
 with open("flag.txt") as f:
     FLAG = f.read().strip()
 
-N = 65537
-Z = 65537
+N = 2 ** 15
+Z = 2 ** 15
 def challenge(conn):
     secret = get_random_bytes(16)
     iv = get_random_bytes(16)
@@ -17,10 +18,10 @@ def challenge(conn):
     pwn_print(conn, f"iv: {iv.hex()}")
     pwn_print(conn, f"ciphertext: {ct.hex()}")
 
-    mem = TreeORAM(N, Z, int.from_bytes(secret))
+    mem = TreeORAM(N, Z, secret)
 
     for i in range(N):
-        mem.write(i, get_random_bytes(8))
+        mem.write(i, get_random_bytes(len(secret)))
 
     choice = 0
     while choice in [0, 1]:
@@ -40,12 +41,6 @@ def challenge(conn):
             for key, val in out['position_map'].items():
                 conn.sendall(f"({key} : {val}) ".encode())
             conn.sendall(b"\n")
-            pwn_print(conn, "Tree:")
-            for i, bucket in enumerate(out['tree']):
-                conn.sendall(f"{i} | ".encode())
-                for block in bucket:
-                    conn.sendall(f"{block} ".encode())
-                conn.sendall(b"\n")
 
 def handle_client(conn):
     try:
