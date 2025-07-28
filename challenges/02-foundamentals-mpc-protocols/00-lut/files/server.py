@@ -1,10 +1,10 @@
-from pwn import *
-from Crypto.Cipher import AES
+import socket
+import threading
 from Crypto.Random import get_random_bytes
 from Crypto.Protocol.SecretSharing import Shamir
-from Crypto.Util.Padding import pad, unpad
+from Crypto.Util.Padding import unpad
 from random import randint
-from utils import pwn_input, pwn_print
+from utils import *
 
 PORT = 1342
 with open("flag.txt") as f:
@@ -14,12 +14,6 @@ assert len(FLAG) == 40
 
 keys = [get_random_bytes(16) for _ in range(64)]
 iv = get_random_bytes(16)
-
-def encrypt(pt, key):
-    cipher = AES.new(key, AES.MODE_CBC, iv)
-    ct = cipher.encrypt(pad(pt, AES.block_size))
-
-    return ct
 
 access = [0 for _ in range(64)]
 
@@ -51,7 +45,7 @@ for i in range(2):
         offset = [4*i, 4*j]
         for idx, share in shares[2*i + j]:
             qindex = [(idx-1) // 4, (idx-1) % 4]
-            lut[offset[0] + qindex[0]][offset[1] + qindex[1]] = encrypt(share, keys[8 * (offset[0] + qindex[0]) + offset[1] + qindex[1]])
+            lut[offset[0] + qindex[0]][offset[1] + qindex[1]] = encrypt(share, keys[8 * (offset[0] + qindex[0]) + offset[1] + qindex[1]], iv)
 
 def menu(conn):
     pwn_print(conn, "Which entry do you want to decrypt (insert an invalid index to exit)?")
@@ -82,10 +76,25 @@ def challenge(conn):
 
     conn.close()
 
+def handle_client(conn):
+    try:
+        challenge(conn)
+    except Exception as e:
+        print(f"Error handling client: {repr(e)}")
+    finally:
+        conn.close()
+
 def main():
-    server = listen(PORT)
-    print(f"Server listening on port {PORT}")
-    challenge(server)
+    print(f"[+] Server listening on port {PORT}")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(('0.0.0.0', PORT))
+    s.listen()
+
+    while True:
+        conn, addr = s.accept()
+        print(f"[*] New connection received from {addr}")
+        threading.Thread(target=handle_client, args=(conn,), daemon=True).start()
 
 if __name__ == "__main__":
     main()

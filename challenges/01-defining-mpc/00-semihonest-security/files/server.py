@@ -8,7 +8,7 @@ PORT = 1338
 with open("flag.txt") as f:
     FLAG = f.read().strip().encode().hex()
 
-def functionality(conn):
+def challenge(conn):
     party1 = Party1()
     party2 = Party2()
 
@@ -34,7 +34,7 @@ def functionality(conn):
 
 def handle_client(conn):
     try:
-        functionality(conn)
+        challenge(conn)
     except Exception as e:
         print(f"Error handling client: {repr(e)}")
     finally:

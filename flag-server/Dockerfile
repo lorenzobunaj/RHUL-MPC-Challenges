@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir flask
+RUN pip install --no-cache-dir gunicorn
 
 # File permissions
 RUN chmod +x run.sh

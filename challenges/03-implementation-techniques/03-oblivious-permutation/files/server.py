@@ -1,4 +1,5 @@
-from pwn import *
+import socket
+import threading
 from utils import *
 import random
 from sympy import prime
@@ -30,8 +31,8 @@ def challenge(conn):
         pwn_print(conn, "New sequence: ")
         sequence = []
         for i in range(32):
-            conn.send(f"seq[{i}]: ".encode())
-            num = int(conn.recvline().decode().strip())
+            conn.sendall(f"seq[{i}]: ".encode())
+            num = int(pwn_recvline(conn))
             sequence.append(num)
         for _ in range(19):
             sequence.append(None)
@@ -45,8 +46,8 @@ def challenge(conn):
         for _ in range(20):
             tmp_sequence = permute(new_sequence, k)
             for num in tmp_sequence:
-                conn.send(f'{"-" if num is None else num} '.encode())
-            conn.send(b"\n")
+                conn.sendall(f'{"-" if num is None else num} '.encode())
+            conn.sendall(b"\n")
             if None in new_sequence:
                 new_sequence.remove(None)
 
@@ -59,8 +60,8 @@ def challenge(conn):
         for _ in range(20):
             tmp_sequence = permute(new_sequence, k)
             for num in tmp_sequence:
-                conn.send(f'{"-" if num is None else num} '.encode())
-            conn.send(b"\n")
+                conn.sendall(f'{"-" if num is None else num} '.encode())
+            conn.sendall(b"\n")
             if None in new_sequence:
                 new_sequence.remove(None)
         
@@ -68,10 +69,25 @@ def challenge(conn):
 
     conn.close()
 
+def handle_client(conn):
+    try:
+        challenge(conn)
+    except Exception as e:
+        print(f"Error handling client: {repr(e)}")
+    finally:
+        conn.close()
+
 def main():
-    server = listen(PORT)
-    print(f"Server listening on port {PORT}")
-    challenge(server)
+    print(f"[+] Server listening on port {PORT}")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(('0.0.0.0', PORT))
+    s.listen()
+
+    while True:
+        conn, addr = s.accept()
+        print(f"[*] New connection received from {addr}")
+        threading.Thread(target=handle_client, args=(conn,), daemon=True).start()
 
 if __name__ == "__main__":
     main()

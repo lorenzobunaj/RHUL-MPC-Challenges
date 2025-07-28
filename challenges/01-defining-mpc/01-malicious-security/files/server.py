@@ -1,7 +1,8 @@
+import socket
+import threading
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad, unpad
-from pwn import *
 from utils import pwn_input, pwn_print
 
 PORT = 1339
@@ -21,7 +22,7 @@ def menu(conn):
 
     return choice
 
-def protocol(conn):
+def challenge(conn):
     p = int(pwn_input(conn, "Enter the modulo (as integer): "))
     x = int.from_bytes(key, 'little')
     g = 2
@@ -32,7 +33,6 @@ def protocol(conn):
 
     pwn_print(conn, str(y))
 
-def decryptFlag(conn):
     try:
         guess_int = int(pwn_input(conn, "Enter the key (as integer): "))
         guess_key = guess_int.to_bytes(16, 'little')
@@ -43,18 +43,25 @@ def decryptFlag(conn):
     except Exception:
         pwn_print(conn, "Decryption failed.")
 
-def main():
-    server = listen(PORT)
-    print(f"Server listening on port {PORT}")
-    
-    for _ in range(2):
-        choice = menu(server)
-        if choice == 1:
-            protocol(server)
-        elif choice == 2:
-            decryptFlag(server)
+def handle_client(conn):
+    try:
+        challenge(conn)
+    except Exception as e:
+        print(f"Error handling client: {repr(e)}")
+    finally:
+        conn.close()
 
-    server.close()
+def main():
+    print(f"[+] Server listening on port {PORT}")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(('0.0.0.0', PORT))
+    s.listen()
+
+    while True:
+        conn, addr = s.accept()
+        print(f"[*] New connection received from {addr}")
+        threading.Thread(target=handle_client, args=(conn,), daemon=True).start()
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 from pwn import *
 from Crypto.Random import get_random_bytes
-from random import randint
 from utils import *
 from oram import TreeORAM
 
@@ -28,31 +27,45 @@ def challenge(conn):
         pwn_print(conn, "What do you want to do?")
         pwn_print(conn, "(0) Read")
         pwn_print(conn, "(1) Dump ORAM")
-        conn.send(b"You choice: ")
-        choice = int(conn.recvline().strip().decode())
+        conn.sendall(b"You choice: ")
+        choice = int(pwn_recvline(conn))
 
         if choice == 0:
-            conn.send(b"Block id: ")
-            bid = int(conn.recvline().strip().decode())
-            conn.sendline(mem.read(bid).hex().encode())
+            conn.sendall(b"Block id: ")
+            bid = int(pwn_recvline(conn))
+            conn.sendall(mem.read(bid).hex().encode() + b"\n")
         elif choice == 1:
             out = mem.dump()
             pwn_print(conn, "Position map:")
             for key, val in out['position_map'].items():
-                conn.send(f"({key} : {val}) ".encode())
-            conn.sendline()
+                conn.sendall(f"({key} : {val}) ".encode())
+            conn.sendall(b"\n")
             pwn_print(conn, "Tree:")
             for i, bucket in enumerate(out['tree']):
-                conn.send(f"{i} | ")
+                conn.sendall(f"{i} | ".encode())
                 for block in bucket:
-                    conn.send(f"{block} ".encode())
-                conn.sendline()
+                    conn.sendall(f"{block} ".encode())
+                conn.sendall(b"\n")
+
+def handle_client(conn):
+    try:
+        challenge(conn)
+    except Exception as e:
+        print(f"Error handling client: {repr(e)}")
+    finally:
+        conn.close()
 
 def main():
-    server = listen(PORT)
-    print(f"Server listening on port {PORT}")
-    challenge(server)
-    server.close()
+    print(f"[+] Server listening on port {PORT}")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(('0.0.0.0', PORT))
+    s.listen()
+
+    while True:
+        conn, addr = s.accept()
+        print(f"[*] New connection received from {addr}")
+        threading.Thread(target=handle_client, args=(conn,), daemon=True).start()
 
 if __name__ == "__main__":
     main()
