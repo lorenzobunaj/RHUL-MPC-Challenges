@@ -428,6 +428,24 @@ services:
     networks:
       - internal
 
+  rhul-04-02:
+    build:
+      context: ./challenges/04-oblivious-data-structures/02-tree-oram
+    container_name: rhul_04_02
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R04_02_PORT}:${R04_02_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
