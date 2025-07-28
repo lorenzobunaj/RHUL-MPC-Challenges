@@ -7,30 +7,12 @@ import ast
 HOST = "localhost" # change to the actual host
 PORT = 1361 # change to the actual port
 
-def parse_bucket(bucket_str):
-    tuple_strs = re.findall(r"\(\d+, b'(?:[^'\\]|\\.)*'\)", bucket_str)
-    return [eval(ts) for ts in tuple_strs]
-
 def read_position_map(conn):
     conn.recvuntil(b"Position map:\n")
     pm_pairs = re.findall(r'\((\d+)\s*:\s*(\d+)\)', conn.recvline().strip().decode())
     position_map = {int(k): int(v) for k, v in pm_pairs}
 
     return position_map
-
-def read_tree(conn):
-    conn.recvuntil(b"Tree:\n")
-    tree = conn.recvline().strip().decode()
-    tree = []
-    for _ in range(2 * N - 1):
-        conn.recvuntil(b"| ")
-        bucket_str = conn.recvline().strip().decode()
-        if bucket_str == "":
-            tree.append([])
-        else:
-            tree.append(parse_bucket(bucket_str))
-
-    return tree
 
 N = 43
 Z = 43
@@ -57,6 +39,7 @@ def main():
     position_map = read_position_map(conn)
     b = position_map[target]
 
+    # find t^(s^d)
     for _ in range(pow(2,5) - 1):
         conn.sendline(b"0")
         conn.sendline(f"{target}".encode())
@@ -65,7 +48,11 @@ def main():
     position_map = read_position_map(conn)
     c = position_map[target]
 
-    print(a, b, c)
+    print("iv = ", iv)
+    print("ct = ", ct)
+    print("a = ", a)
+    print("b = ", b)
+    print("c = ", c)
 
     conn.close()
 
