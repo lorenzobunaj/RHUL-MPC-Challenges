@@ -1,0 +1,13 @@
+{
+    "challengeName": "Free XOR",
+    "flag": "RHUL{d0n7_f0rg37_7h3_c0ns1s73ncy_iUNs}",
+    "description": "This protocol hides its logic behind a simplified structure, where certain values are linked by design. The system allows faster computation by reusing relationships, but those same shortcuts can create unexpected opportunities.\n\nYour role is to interact, observe, and compare. If you manage to spot how the pieces shift between rounds, you can uncover the hidden link they all share.\n\nConnect to the server: **nc 188.166.153.223 1354**",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

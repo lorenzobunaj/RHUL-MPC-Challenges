@@ -14,8 +14,9 @@ def read_position_map(conn):
 
     return position_map
 
-N = 43
-Z = 43
+N = 65537
+Z = 65537
+d = pow(2,5)
 def main():
     conn = remote(HOST, PORT)
 
@@ -24,7 +25,7 @@ def main():
     conn.recvuntil(b"ciphertext: ")
     ct = bytes.fromhex(conn.recvline().strip().decode())
 
-    # find t
+    # recover t
     conn.sendline(b"1")
     position_map = read_position_map(conn)
     for i in range(N):
@@ -32,27 +33,29 @@ def main():
             target = i
     a = position_map[target]
 
-    # find t^s
+    # recover t^s
     conn.sendline(b"0")
     conn.sendline(f"{target}".encode())
     conn.sendline(b"1")
     position_map = read_position_map(conn)
     b = position_map[target]
 
-    # find t^(s^d)
-    for _ in range(pow(2,5) - 1):
+    # recover t^(s^d)
+    for i in range(d - 1):
         conn.sendline(b"0")
         conn.sendline(f"{target}".encode())
         conn.sendline(b"1")
+        if i < d - 2:
+            conn.recvuntil(b"Position map:\n")
     
     position_map = read_position_map(conn)
     c = position_map[target]
 
-    print("iv = ", iv)
-    print("ct = ", ct)
-    print("a = ", a)
-    print("b = ", b)
-    print("c = ", c)
+    print("iv =", iv)
+    print("ct =", ct)
+    print("a =", a)
+    print("b =", b)
+    print("c =", c)
 
     conn.close()
 

@@ -1,0 +1,13 @@
+{
+    "challengeName": "Oblivious Permutation",
+    "flag": "RHUL{n3v3r_7rus7_unkN0wn_s33d5_uNus}",
+    "description": "You’re interacting with a system that takes your input, shifts it around, and reveals just enough to keep things interesting. The movement seems random at first, driven by hidden values, but careful observation can uncover a deeper structure behind the shuffling.\n\nIf you can trace how the changes happen and understand the source of the randomness, the puzzle begins to unfold, and what was meant to stay hidden might reveal itself completely.\n\nConnect to the server: **nc 188.166.153.223 1356**",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

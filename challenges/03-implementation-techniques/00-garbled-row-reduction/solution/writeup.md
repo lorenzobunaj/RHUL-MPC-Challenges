@@ -1,6 +1,6 @@
-# GRR2
+# Garbled Row Reduction
 
-**Challenge name**: GRR2\
+**Challenge name**: Garbled Row Reduction\
 **Category**: Implementation Techniques\
 **Author**: Lorenzo Bunaj
 

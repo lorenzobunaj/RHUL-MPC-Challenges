@@ -1,0 +1,13 @@
+{
+    "challengeName": "Mixed Protocols",
+    "flag": "RHUL{1_l0v3_M1x1ng_Gc_4nd_43H_uebW}",
+    "description": "This system combines different cryptographic techniques into a single flow, blending homomorphic encryption with garbled circuits. The parts are well-defined, but understanding how they connect is key. Each step passes information forward in a different form, and it’s up to you to navigate through them correctly.\n\nThere’s no trick or hidden bug. If you can match each step with the right input, adapt to the structure, and apply the logic as intended, the final result will come naturally.\n\nConnect to the server: **nc 188.166.153.223 1357**",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

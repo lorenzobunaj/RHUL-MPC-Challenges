@@ -1,0 +1,13 @@
+{
+    "challengeName": "OKVS",
+    "flag": "RHUL{0kVs_4r3_s3cuR3_un71l_7hey_4r3_n07_3ner}",
+    "description": "You’re looking at a data structure designed to hide keys behind controlled access and clever encoding. The values are mixed, shuffled, and mapped in a way that seems to leave no trace of what’s special. One of them holds the secret.\n\nStill, patterns remain. If you can rebuild part of the structure and compare what you see to what you expect, the difference may reveal exactly what you’re after.\n\nConnect to the server: **nc 188.166.153.223 1360**",
+    "categories": [
+        "Oblivious Data Structures"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

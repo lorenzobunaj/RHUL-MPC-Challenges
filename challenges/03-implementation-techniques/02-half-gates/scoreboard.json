@@ -1,0 +1,13 @@
+{
+    "challengeName": "Half Gates",
+    "flag": "RHUL{7w0_g4t3s_4r3_b3t7er_7h4N_0n3_InuW}",
+    "description": "This protocol breaks down a simple operation into two coordinated steps, each revealing part of the result through carefully crafted interactions. The logic is precise, the structure efficient, and every bit of the final output must be earned through calculation and deduction.\n\nYou have everything you need to follow the process, just not all at once. One bit at a time, the secret unfolds.\n\nConnect to the server: **nc 188.166.153.223 1355**",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

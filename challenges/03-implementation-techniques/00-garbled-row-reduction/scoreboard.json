@@ -1,0 +1,13 @@
+{
+    "challengeName": "Garbled Row Reduction",
+    "flag": "RHUL{7w0_1s_b3773r_7h4n_7hr33_zpWin}",
+    "description": "This protocol compresses a logic gate into a tighter form, using fewer pieces to represent the same outcome. With some clever interpolation and shuffled components, the output is still reachable, but only if you can reconstruct the right path.\n\nYou don’t get to see the whole picture upfront. The right combination brings everything together and reveals what’s hidden behind the wires.",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

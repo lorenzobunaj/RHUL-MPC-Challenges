@@ -1,0 +1,13 @@
+{
+    "challengeName": "Compressing Circuits",
+    "flag": "RHUL{l00k_1n_7h3_s7ack_4nd_f1nd_7h3_w4y_uYTe}",
+    "description": "You are given the outcome of a computation and the exact steps that led to it. At first glance, everything appears to follow a fixed structure, producing a clean result based on the inputs provided.\n\nBut a subtle flaw in how the operations are applied changes the outcome in an unexpected way. By carefully examining the behavior and tracing the logic, you can isolate what wasn’t meant to be included, and from there, recover what was supposed to stay hidden.",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

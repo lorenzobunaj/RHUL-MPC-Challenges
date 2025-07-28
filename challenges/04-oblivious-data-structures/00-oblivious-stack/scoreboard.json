@@ -1,0 +1,13 @@
+{
+    "challengeName": "Oblivious Stack",
+    "flag": "RHUL{w3_l0v3_0bliv10u5_57Rus7ur3s_8B2ns}",
+    "description": "You’re interacting with a data structure that tries to keep its state hidden, mixing operations and values in a way that avoids revealing too much. Some entries are handled with care, while others are pushed aside depending on hidden conditions.\n\nBut there’s a crack in the logic. One part doesn’t quite follow the same careful rules, and that opens the door to reaching data that was meant to be out of bounds. With the right balance of inputs and a bit of strategy, the stack may return more than it was supposed to.\n\nConnect to the server: **nc 188.166.153.223 1359**",
+    "categories": [
+        "Oblivious Data Structures"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

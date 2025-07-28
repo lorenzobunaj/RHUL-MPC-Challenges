@@ -1,0 +1,13 @@
+{
+    "challengeName": "Intro to Obliv-C",
+    "flag": "RHUL{0bliv10u5_15_B377er_7th4n_pl41n_34Yn}",
+    "description": "This is a first step into a new environment, where the code runs securely and parties keep their inputs private. You’re given a basic setup and your goal is to understand how to interact with it.\n\nConnect to the server: **nc 188.166.153.223 1357**",
+    "categories": [
+        "Implementation Techniques"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}
