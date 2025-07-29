@@ -1,6 +1,4 @@
 from pwn import *
-from Crypto.Util.Padding import pad
-from Crypto.Cipher import AES
 import re
 
 HOST = "localhost" # change to the actual host
