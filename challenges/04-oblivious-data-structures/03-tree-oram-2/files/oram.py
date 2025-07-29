@@ -12,9 +12,11 @@ class TreeORAM:
         self.total_nodes = 2 * self.total_leaves - 1
 
         self.tree = [[] for _ in range(self.total_nodes)]
-        self.position_map = {i: random.randint(0, self.real_leaves - 1) for i in range(N)}
+        self.original_position_map = {i: random.randint(0, self.real_leaves - 1) for i in range(N)}
+        self.position_map = dict(self.original_position_map)
         self.block_data = {i: None for i in range(N)}
         self.s = secret
+        self.remap_cnt = 0
 
     def _get_leaf_node_index(self, leaf):
         return self.total_nodes - self.total_leaves + leaf
@@ -36,6 +38,7 @@ class TreeORAM:
             for i, (bid, _) in enumerate(self.tree[node]):
                 if bid == block_id:
                     data = self.tree[node].pop(i)[1]
+                    self.remap_cnt += 1
                     self._remap(block_id)
                     self._evict(block_id, data)
                     return data
@@ -47,7 +50,7 @@ class TreeORAM:
         self._evict(block_id, data)
 
     def _remap(self, block_id):
-        self.position_map[block_id] = pow(self.position_map[block_id], self.s, self.real_leaves)
+        self.position_map[block_id] = pow(self.original_position_map[block_id], pow(self.s, self.remap_cnt, self.real_leaves), self.real_leaves)
 
     def _evict(self, block_id, data):
         leaf = self.position_map[block_id]

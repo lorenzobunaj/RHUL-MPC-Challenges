@@ -18,16 +18,18 @@ def challenge(conn):
     pwn_print(conn, f"iv: {iv.hex()}")
     pwn_print(conn, f"ciphertext: {ct.hex()}")
 
-    mem = TreeORAM(N, Z, int.from_bytes(secret))
+    mem = TreeORAM(N, Z, int.from_bytes(secret[:2]))
 
     for i in range(N):
         mem.write(i, get_random_bytes(8))
 
+    reset_cnt = 0
     choice = 0
-    while choice in [0, 1]:
+    while choice in [0, 1, 2]:
         pwn_print(conn, "What do you want to do?")
         pwn_print(conn, "(0) Read")
         pwn_print(conn, "(1) Dump ORAM")
+        pwn_print(conn, "(2) Reset")
         conn.sendall(b"You choice: ")
         choice = int(pwn_recvline(conn))
 
@@ -41,6 +43,15 @@ def challenge(conn):
             for key, val in out['position_map'].items():
                 conn.sendall(f"({key} : {val}) ".encode())
             conn.sendall(b"\n")
+        elif choice == 2:
+            if reset_cnt == 7:
+                return
+            reset_cnt += 1
+
+            mem = TreeORAM(N, Z, int.from_bytes(secret[reset_cnt*2:(reset_cnt+1)*2]))
+
+            for i in range(N):
+                mem.write(i, get_random_bytes(8))
 
 def handle_client(conn):
     try:

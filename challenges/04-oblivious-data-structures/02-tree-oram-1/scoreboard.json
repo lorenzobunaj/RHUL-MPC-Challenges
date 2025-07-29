@@ -1,0 +1,13 @@
+{
+    "challengeName": "Oblivious RAM 1",
+    "flag": "RHUL{duMp1ng_1s_4lw4ys_7h3_r1gh7_cho1c3_54s9}",
+    "description": "You’re working with a memory system designed to hide access patterns and locations. The data shifts, the structure moves, and where something is stored is never quite what it seems. You’re allowed to read and inspect, but only through a controlled interface.\n\nBut not everything resets the way it should. If you pay attention to how things change, the system begins to leak its secrets. With enough careful steps, you can follow the trail back to what was meant to stay hidden.\n\nConnect to the server: **nc 188.166.153.223 1361**",
+    "categories": [
+        "Oblivious Data Structures"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}
