@@ -464,6 +464,24 @@ services:
     networks:
       - internal
 
+  rhul-04-04:
+    build:
+      context: ./challenges/04-oblivious-data-structures/04-sqrt-oram
+    container_name: rhul_04_04
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R04_04_PORT}:${R04_04_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
