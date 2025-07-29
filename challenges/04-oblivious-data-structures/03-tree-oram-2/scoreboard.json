@@ -1,0 +1,13 @@
+{
+    "challengeName": "Oblivious RAM 2",
+    "flag": "RHUL{w4lk_d0wn_7h3_r1gh7_p47h_iEm2}",
+    "description": "You’re working with a system built to conceal every access, every location and every move. The data shifts constantly, and you’re only given limited ways to observe it.\n\nBut patterns emerge in the chaos. With each reset, the illusion cracks just slightly. Track the changes closely, and the secret at the core may start to take shape.\n\nConnect to the server: **nc 188.166.153.223 1362**",
+    "categories": [
+        "Oblivious Data Structures"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}
