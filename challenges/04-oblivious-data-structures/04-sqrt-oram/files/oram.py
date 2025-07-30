@@ -2,6 +2,7 @@ import math
 import random
 from time import sleep
 
+TIME_DELAY = 0.2
 class SqrtORAM:
     def __init__(self, N):
         self.cap = N
@@ -26,13 +27,13 @@ class SqrtORAM:
             self.data[idx] = d
 
     def get_position_map(self):
-        return self.position_map
+        return self.position_map.copy()
 
     def read(self, block_id):
         for id, data in self.stash:
             if id == block_id:
                 return data, 0
-            sleep(0.5)
+            sleep(TIME_DELAY)
 
         data = self.data[self.position_map[block_id]]
         self.stash.append((block_id, data))
@@ -40,6 +41,6 @@ class SqrtORAM:
         if len(self.stash) == self.stash_limit:
             self.stash = []
             self._update_perm()
-
+    
         return data, 1
         
