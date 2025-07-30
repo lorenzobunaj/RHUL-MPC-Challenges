@@ -1,0 +1,13 @@
+{
+    "challengeName": "Square-Root ORAM",
+    "flag": "RHUL{3f9cb1b5bbf03bc2}",
+    "description": "You’re interacting with an ORAM that splits its memory between fast access and a stash scanned linearly. On the surface, every read looks uniform, hidden behind randomized mappings.\n\nYet not all paths through the memory behave alike. Subtle differences in how data is retrieved hint at what's hiding where. With the right sequence of queries, you can piece together what was meant to stay concealed.\n\nConnect to the server: **nc 188.166.153.223 1363**",
+    "categories": [
+        "Oblivious Data Structures"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}
