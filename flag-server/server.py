@@ -13,8 +13,8 @@ def index():
     return '''
     Flag Server is running.
 
-    If you got the flag, download the solver and the writeup using:
-    curl -X POST -d "challenge=XX-YY&flag=RHUL{your_flag}" http:///188.166.153.223:5000/submit --output solution.zip
+    If you got the flag, download the solution by sending the following request:
+    curl -X POST -d "challenge=XX-YY&flag=RHUL{your_flag}" http://188.166.153.223:5000/submit --output solution.zip
 '''
 
 @app.route('/submit', methods=['POST'])
@@ -30,28 +30,27 @@ def submit():
     except ValueError:
         return "Invalid challenge format. Use NN-NN.", 400
 
-    # Find the matching challenge folder
     major_glob = os.path.join(CHALLENGE_ROOT, f"{major}-*")
     for major_dir in glob.glob(major_glob):
         minor_glob = os.path.join(major_dir, f"{minor}-*")
         for challenge_dir in glob.glob(minor_glob):
             flag_file = os.path.join(challenge_dir, "flag.txt")
             solution_dir = os.path.join(challenge_dir, "solution")
-            solver = os.path.join(solution_dir, "solver.py")
-            writeup = os.path.join(solution_dir, "writeup.md")
 
-            # Check for flag and solution files
-            if os.path.isfile(flag_file) and os.path.isfile(solver) and os.path.isfile(writeup):
+            if os.path.isfile(flag_file) and os.path.isdir(solution_dir):
                 with open(flag_file, 'r') as f:
                     expected_flag = f.read().strip()
                 if flag != expected_flag:
                     return "Incorrect flag.", 403
 
-                # Build zip in memory
+                # build solution.zip
                 zip_buf = BytesIO()
-                with zipfile.ZipFile(zip_buf, 'w') as zipf:
-                    zipf.write(solver, arcname="solver.py")
-                    zipf.write(writeup, arcname="writeup.md")
+                with zipfile.ZipFile(zip_buf, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                    for root, _, files in os.walk(solution_dir):
+                        for file in files:
+                            abs_path = os.path.join(root, file)
+                            rel_path = os.path.relpath(abs_path, solution_dir)
+                            zipf.write(abs_path, arcname=rel_path)
                 zip_buf.seek(0)
                 return send_file(
                     zip_buf,

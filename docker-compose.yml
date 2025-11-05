@@ -482,6 +482,42 @@ services:
     networks:
       - internal
 
+  rhul-05-00:
+    build:
+      context: ./challenges/05-malicious-security/00-cut-and-choose-1
+    container_name: rhul_05_00
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R05_00_PORT}:${R05_00_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+  
+  rhul-05-01:
+    build:
+      context: ./challenges/05-malicious-security/01-cut-and-choose-2
+    container_name: rhul_05_01
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R05_01_PORT}:${R05_01_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
