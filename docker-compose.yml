@@ -518,6 +518,24 @@ services:
     networks:
       - internal
 
+  rhul-05-02:
+    build:
+      context: ./challenges/05-malicious-security/02-cut-and-choose-3
+    container_name: rhul_05_02
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R05_02_PORT}:${R05_02_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:

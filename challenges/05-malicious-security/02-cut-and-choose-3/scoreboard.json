@@ -1,0 +1,13 @@
+{
+    "challengeName": "Cut and Choose 3",
+    "flag": "RHUL{M4lic10us_4dv3rs4ries_n33d_7o_b3_Punish3d_7nsi8}",
+    "description": "\n\nConnect to the server: **nc 188.166.153.223 1366**",
+    "categories": [
+        "Malicious Security"
+    ],
+    "challengeType": "dynamic",
+    "maxValue": 500,
+    "minValue": 50,
+    "decay": 10,
+    "decayFunction": "logarithmic"
+}

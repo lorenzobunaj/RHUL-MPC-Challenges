@@ -54,6 +54,8 @@ def main():
     flag = conn.recvline().strip().decode()
     print(flag)
 
+    conn.close()
+
 if __name__ == "__main__":
     main()
 
