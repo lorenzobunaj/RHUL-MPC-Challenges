@@ -1,6 +1,5 @@
 import socket
 import threading
-import secrets
 from utils import pwn_input_inline, pwn_print, bytes_to_bits
 from setup import setup
 from private.parameters import S

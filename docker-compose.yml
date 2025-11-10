@@ -536,6 +536,24 @@ services:
     networks:
       - internal
 
+  rhul-05-03:
+    build:
+      context: ./challenges/05-malicious-security/03-spdz
+    container_name: rhul_05_03
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${R05_03_PORT}:${R05_03_CHAL_PORT}"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - internal
+
 
 networks:
   internal:
