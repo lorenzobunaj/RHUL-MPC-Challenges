@@ -35,11 +35,11 @@ If the two shares are correct, the server will output the original flag.
 
 ## Solution
 
-The vulnerability lies in the fact that, differently from the previous exercise, then original circuit used to compute secret and its GMW implementation are not coherent.
+The vulnerability lies in the fact that, differently from the previous exercise, the original circuit used to compute secret and its GMW implementation are not coherent.
 
-In particular, following the server GMW computation in the evaluation of the $t_i$ values, we see where that $t_2$ is computed as $t_2 = x_2 \land y_2$. So the server is using an AND gate while it should be using a XOR one.
+In particular, following the server GMW computation in the evaluation of the $t_i$ values, we see that $t_2$ is computed as $t_2 = x_2 \land y_2$. So the server is using an AND gate while it should be using a XOR one.
 
-We need to strictly follow the circuit logic to get the flag, so, during the communication for the evaluation of $t_2$, we need to send a payload to the server in order to trick it to execute a XOR operation instead of a XOR one.
+We need to strictly follow the circuit logic to get the flag, so, during the communication for the evaluation of $t_2$, we need to send a payload to the server in order to trick it to execute a XOR operation instead of a AND one.
 
 For the faulty AND gate, we will therefore send the table
 
