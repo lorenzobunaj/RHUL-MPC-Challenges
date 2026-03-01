@@ -10,9 +10,9 @@ This challenge implements a basic protocol where the user can send 20 elements $
 
 ## Solution
 
-The protocol is not malicious secure, the user $P_2$ can therefore use an selective abort attack.
+The protocol is not secure against selective abort attacks, the user $P_2$ will therefore need to exploit this vulnerability.
 
-For the generic flag byte $f_j$, $P_2$ can send 20 equal elements $a^*_k, \dots,a^*_k$, where $k$ indicates the iteration, starting from $a^*_1 = 0$. Thus, by checking if the protocol aborted at each step, we can find a value values $w$ s.t.
+For the generic flag byte $f_j$, $P_2$ can send 20 equal elements $a^*_k, \dots,a^*_k$, where $k$ indicates the iteration, starting from $a^*_1 = 0$. Thus, by checking if the protocol aborted at each step, we can find $w$ s.t.
 
 ```math
 a^*_w \rightarrow \text{protocol works}\\
